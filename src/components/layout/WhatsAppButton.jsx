@@ -1,4 +1,3 @@
-// src/components/layout/WhatsAppButton.jsx
 import React from 'react';
 import { Fab } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';

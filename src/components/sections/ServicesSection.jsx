@@ -1,5 +1,3 @@
-// src/components/sections/ServicesSection.jsx
-import React from 'react';
 import { Grid, Card, CardContent, Typography } from '@mui/material';
 import SectionWrapper from '../common/SectionWrapper';
 import { services } from '../../data/services';

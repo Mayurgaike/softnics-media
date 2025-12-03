@@ -1,4 +1,3 @@
-import React from 'react';
 import Box from '@mui/material/Box';
 
 import SocialBar from './components/layout/SocialBar';
@@ -7,10 +6,10 @@ import HeroSlider from './components/sections/HeroSlider';
 import AboutSection from './components/sections/AboutSection';
 import ServicesSection from './components/sections/ServicesSection';
 import MissionVisionSection from './components/sections/MissionVisionSection';
-// import ClientsSection from './components/sections/ClientsSection';
-// import TeamSection from './components/sections/TeamSection';
-// import ContactSection from './components/sections/ContactSection';
-// import Footer from './components/layout/Footer';
+import ClientsSection from './components/sections/ClientsSection';
+import TeamSection from './components/sections/TeamSection';
+import ContactSection from './components/sections/ContactSection';
+import Footer from './components/layout/Footer';
 import WhatsAppButton from './components/layout/WhatsAppButton';
 
 import 'slick-carousel/slick/slick.css';
@@ -25,10 +24,10 @@ const App = () => {
       <AboutSection />
       <ServicesSection />
       <MissionVisionSection />
-      {/* <ClientsSection />
+      <ClientsSection />
       <TeamSection />
-      <ContactSection /> */}
-      {/* <Footer /> */}
+      <ContactSection />
+      <Footer />
       <WhatsAppButton />
     </Box>
   );

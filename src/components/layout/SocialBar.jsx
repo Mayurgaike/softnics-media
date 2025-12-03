@@ -1,4 +1,3 @@
-// src/components/layout/SocialBar.jsx
 import React from 'react';
 import { Box, IconButton, Container } from '@mui/material';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';

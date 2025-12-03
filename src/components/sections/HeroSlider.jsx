@@ -1,5 +1,3 @@
-// src/components/sections/HeroSlider.jsx
-import React from 'react';
 import { Box, Typography, Container } from '@mui/material';
 import Slider from 'react-slick';
 

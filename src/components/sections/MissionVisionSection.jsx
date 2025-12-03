@@ -1,5 +1,3 @@
-// src/components/sections/MissionVisionSection.jsx
-import React from 'react';
 import { Grid, Typography, Box } from '@mui/material';
 import SectionWrapper from '../common/SectionWrapper';
 

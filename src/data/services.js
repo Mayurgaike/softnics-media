@@ -1,4 +1,3 @@
-// src/data/services.js
 export const services = [
   {
     title: 'Graphic Design',

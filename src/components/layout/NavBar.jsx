@@ -1,4 +1,3 @@
-// src/components/layout/NavBar.jsx
 import React from 'react';
 import {
   AppBar,
