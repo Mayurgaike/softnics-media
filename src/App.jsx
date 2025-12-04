@@ -1,34 +1,29 @@
-import Box from '@mui/material/Box';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Box from "@mui/material/Box";
 
+import SocialBar from "./components/layout/SocialBar";
+import NavBar from "./components/layout/NavBar";
+import Footer from "./components/layout/Footer";
+import WhatsAppButton from "./components/layout/WhatsAppButton";
 
-import NavBar from './components/layout/NavBar';
-import HeroSlider from './components/sections/HeroSlider';
-import AboutSection from './components/sections/AboutSection';
-import ServicesSection from './components/sections/ServicesSection';
-import MissionVisionSection from './components/sections/MissionVisionSection';
-import ClientsSection from './components/sections/ClientsSection';
-import TeamSection from './components/sections/TeamSection';
-import ContactSection from './components/sections/ContactSection';
-import SocialBar from './components/layout/SocialBar';
-import Footer from './components/layout/Footer';
-import WhatsAppButton from './components/layout/WhatsAppButton';
+import HomePage from "./pages/HomePage";
+import ServiceDetailPage from "./pages/ServiceDetailPage";
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const App = () => {
   return (
-    <Box sx={{ bgcolor: 'background.default' }}>
-     
+    <Box sx={{ bgcolor: "background.default" }}>
       <NavBar />
-      <HeroSlider />
-      <AboutSection />
-      <ServicesSection />
-      <MissionVisionSection />
-      <ClientsSection />
-      <TeamSection />
-      <ContactSection />
-       <SocialBar />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/services/:slug" element={<ServiceDetailPage />} />
+      </Routes>
+
+      <SocialBar />
       <Footer />
       <WhatsAppButton />
     </Box>
