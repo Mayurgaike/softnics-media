@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Grid,
   Box,
   Typography,
   TextField,
@@ -31,10 +30,9 @@ const ContactSection = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // For now just log – later you can integrate API / EmailJS etc.
     console.log('Form submitted', form);
 
-    // Optional: open WhatsApp with message
+    // Open WhatsApp with message
     const phone = '919921223986'; // use main WhatsApp number
     const text =
       `Hi, I am ${form.name || ''}.\n` +
@@ -52,9 +50,18 @@ const ContactSection = () => {
       subtitle="Let’s connect and unlock your business potential."
       bg="white"
     >
-      <Grid container spacing={4}>
+      {/* Main row: info + form side by side */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' }, // stacked on mobile, side-by-side on md+
+          gap: 4,
+          alignItems: 'space-around',
+          mt: 10,
+        }}
+      >
         {/* LEFT: info */}
-        <Grid item xs={12} md={5}>
+        <Box sx={{ flex: 1, minWidth: 0 }}>
           <Typography variant="h6" sx={{ mb: 2 }}>
             Get in Touch
           </Typography>
@@ -104,92 +111,91 @@ const ContactSection = () => {
               <GoogleIcon />
             </IconButton>
           </Stack>
-        </Grid>
+        </Box>
 
         {/* RIGHT: form card */}
-        <Grid item xs={12} md={7}>
-          <Box
-            sx={{
-              bgcolor: 'background.paper',
-              borderRadius: 4,
-              p: { xs: 3, md: 4 },
-              boxShadow: 4,
-            }}
-          >
-            <Typography variant="h6" sx={{ mb: 0.5 }}>
-              Let&apos;s Talk To Us
-            </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-              Unlock your business potential with our expert solutions!!
-            </Typography>
+        <Box
+          sx={{
+            minWidth: 0,
+            bgcolor: 'background.paper',
+            borderRadius: 4,
+            p: { xs: 3, md: 4 },
+            boxShadow: 4,
+          }}
+        >
+          <Typography variant="h6" sx={{ mb: 0.5 }}>
+            Let&apos;s Talk To Us
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+            Unlock your business potential with our expert solutions!!
+          </Typography>
 
-            <Box component="form" onSubmit={handleSubmit}>
-              <Stack spacing={2}>
-                <TextField
-                  size="small"
-                  name="name"
-                  label="Enter Your Name"
-                  fullWidth
-                  value={form.name}
-                  onChange={handleChange}
-                />
-                <TextField
-                  size="small"
-                  name="phone"
-                  label="Phone Number"
-                  fullWidth
-                  value={form.phone}
-                  onChange={handleChange}
-                />
-                <TextField
-                  size="small"
-                  name="email"
-                  label="Enter Your Email Id"
-                  type="email"
-                  fullWidth
-                  value={form.email}
-                  onChange={handleChange}
-                />
-                <TextField
-                  size="small"
-                  name="message"
-                  label="Message"
-                  fullWidth
-                  multiline
-                  minRows={3}
-                  value={form.message}
-                  onChange={handleChange}
-                />
+          <Box component="form" onSubmit={handleSubmit}>
+            <Stack spacing={2}>
+              <TextField
+                size="small"
+                name="name"
+                label="Enter Your Name"
+                fullWidth
+                value={form.name}
+                onChange={handleChange}
+              />
+              <TextField
+                size="small"
+                name="phone"
+                label="Phone Number"
+                fullWidth
+                value={form.phone}
+                onChange={handleChange}
+              />
+              <TextField
+                size="small"
+                name="email"
+                label="Enter Your Email Id"
+                type="email"
+                fullWidth
+                value={form.email}
+                onChange={handleChange}
+              />
+              <TextField
+                size="small"
+                name="message"
+                label="Message"
+                fullWidth
+                multiline
+                minRows={3}
+                value={form.message}
+                onChange={handleChange}
+              />
 
-                <Stack
-                  direction={{ xs: 'column', sm: 'row' }}
-                  spacing={1.5}
-                  sx={{ mt: 1 }}
+              <Stack
+                direction={{ xs: 'column', sm: 'row' }}
+                spacing={1.5}
+                sx={{ mt: 1 }}
+              >
+                <Button
+                  type="submit"
+                  variant="contained"
+                  fullWidth
+                  sx={{ py: 1.2 }}
                 >
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    fullWidth
-                    sx={{ py: 1.2 }}
-                  >
-                    Send
-                  </Button>
+                  Send
+                </Button>
 
-                  {/* Explicit WhatsApp button inside form */}
-                  <Button
-                    variant="outlined"
-                    fullWidth
-                    startIcon={<WhatsAppIcon />}
-                    onClick={handleSubmit}
-                  >
-                    Connect on WhatsApp
-                  </Button>
-                </Stack>
+                {/* Explicit WhatsApp button inside form */}
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  startIcon={<WhatsAppIcon />}
+                  onClick={handleSubmit}
+                >
+                  Connect on WhatsApp
+                </Button>
               </Stack>
-            </Box>
+            </Stack>
           </Box>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </SectionWrapper>
   );
 };
