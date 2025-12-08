@@ -113,7 +113,7 @@ export const services = [
   },
   {
     slug: "website-development",
-    title: "Website Development",
+    title: "Web Development",
     icon: "website",
     description:
       "Corporate websites, e-commerce stores, portfolios and business websites.",

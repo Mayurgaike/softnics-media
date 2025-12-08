@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -6,21 +6,24 @@ import {
   Button,
   Stack,
   IconButton,
-} from '@mui/material';
-import SectionWrapper from '../common/SectionWrapper';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import GoogleIcon from '@mui/icons-material/Google';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import EmailIcon from '@mui/icons-material/Email';
-import PhoneIcon from '@mui/icons-material/Phone';
+  Paper,
+} from "@mui/material";
+import SectionWrapper from "../common/SectionWrapper";
+
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import GoogleIcon from "@mui/icons-material/Google";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import EmailIcon from "@mui/icons-material/Email";
+import PhoneIcon from "@mui/icons-material/Phone";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 const ContactSection = () => {
   const [form, setForm] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    message: '',
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
   });
 
   const handleChange = (e) => {
@@ -30,17 +33,21 @@ const ContactSection = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log('Form submitted', form);
+    // Required validation
+    if (!form.name || !form.phone || !form.email || !form.message) {
+      alert("Please fill all fields before submitting.");
+      return;
+    }
 
-    // Open WhatsApp with message
-    const phone = '919921223986'; // use main WhatsApp number
+    const phone = "919921223986";
+
     const text =
-      `Hi, I am ${form.name || ''}.\n` +
-      `Phone: ${form.phone || ''}\n` +
-      `Email: ${form.email || ''}\n` +
-      `Message: ${form.message || ''}`;
-    const encoded = encodeURIComponent(text);
-    window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
+      `Hi, I am ${form.name}.\n` +
+      `Phone: ${form.phone}\n` +
+      `Email: ${form.email}\n` +
+      `Message: ${form.message}`;
+
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`);
   };
 
   return (
@@ -50,151 +57,178 @@ const ContactSection = () => {
       subtitle="Let’s connect and unlock your business potential."
       bg="white"
     >
-      {/* Main row: info + form side by side */}
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' }, // stacked on mobile, side-by-side on md+
-          gap: 4,
-          alignItems: 'space-around',
-          mt: 10,
+          display: "flex",
+          flexDirection: { xs: "column", lg: "row" },
+          gap: 6,
+          mt: 6,
         }}
       >
-        {/* LEFT: info */}
-        <Box sx={{ flex: 1, minWidth: 0 }}>
-          <Typography variant="h6" sx={{ mb: 2 }}>
+        {/* LEFT PANEL */}
+        <Box sx={{ flex: 1 }}>
+          <Typography variant="h5" sx={{ mb: 2, fontWeight: 700 }}>
             Get in Touch
           </Typography>
-          <Stack spacing={1.5} sx={{ mb: 3 }}>
-            <Stack direction="row" spacing={1} alignItems="flex-start">
-              <PhoneIcon fontSize="small" />
-              <Typography variant="body2">
-                +91 99212 23986 / 093093 56702
+
+          <Stack spacing={3} sx={{ mb: 4 }}>
+            <Stack direction="row" spacing={2}>
+              <PhoneIcon color="primary" />
+              <Typography variant="body1">
+                +91 99212 23986 <br /> +91 93093 56702
               </Typography>
             </Stack>
-            <Stack direction="row" spacing={1} alignItems="flex-start">
-              <EmailIcon fontSize="small" />
-              <Typography variant="body2">softnicsmedia@gmail.com</Typography>
+
+            <Stack direction="row" spacing={2}>
+              <EmailIcon color="primary" />
+              <Typography variant="body1">softnicsmedia@gmail.com</Typography>
             </Stack>
-            <Stack direction="row" spacing={1} alignItems="flex-start">
-              <GoogleIcon fontSize="small" />
-              <Typography variant="body2">
-                6th Floor, Roongta Business Hub, 6074, Agra - Mumbai Hwy,
-                near Indira Nagar Underpass, Nashik, Maharashtra 422009
+
+            <Stack direction="row" spacing={2}>
+              <LocationOnIcon color="primary" />
+              <Typography variant="body1">
+                6th Floor, Roongta Business Hub, Nashik
               </Typography>
             </Stack>
           </Stack>
 
-          <Typography variant="subtitle2" sx={{ mb: 1 }}>
-            Follow us
+          <Typography variant="h6" sx={{ fontWeight: 600, mb: 1 }}>
+            Follow Us
           </Typography>
-          <Stack direction="row" spacing={1}>
+
+          <Stack direction="row" spacing={2}>
             <IconButton
-              component="a"
               href="https://www.instagram.com/softnicsmedia_com"
               target="_blank"
+              sx={{ bgcolor: "#F4F5F7" }}
             >
-              <InstagramIcon />
+              <InstagramIcon color="primary" />
             </IconButton>
+
             <IconButton
-              component="a"
               href="https://www.facebook.com/softnicsmedia"
               target="_blank"
+              sx={{ bgcolor: "#F4F5F7" }}
             >
-              <FacebookIcon />
+              <FacebookIcon color="primary" />
             </IconButton>
+
             <IconButton
-              component="a"
               href="https://share.google/7FrFLUQ16WaAsCPqX"
               target="_blank"
+              sx={{ bgcolor: "#F4F5F7" }}
             >
-              <GoogleIcon />
+              <GoogleIcon color="primary" />
             </IconButton>
           </Stack>
         </Box>
 
-        {/* RIGHT: form card */}
-        <Box
+        {/* RIGHT FORM CARD */}
+        <Paper
+          elevation={5}
           sx={{
-            minWidth: 0,
-            bgcolor: 'background.paper',
-            borderRadius: 4,
-            p: { xs: 3, md: 4 },
-            boxShadow: 4,
+            flex: 1,
+            p: { xs: 3, md: 3 },
+            borderRadius: 1,
+            maxWidth: 500,  // Smaller width form
+            mx: "auto",
           }}
         >
-          <Typography variant="h6" sx={{ mb: 0.5 }}>
-            Let&apos;s Talk To Us
+          <Typography variant="h5" sx={{ fontWeight: 700, mb: 1 }}>
+            Let's Talk
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-            Unlock your business potential with our expert solutions!!
+
+          <Typography variant="body2" sx={{ mb: 3, color: "text.secondary" }}>
+            Unlock your business potential today.
           </Typography>
 
           <Box component="form" onSubmit={handleSubmit}>
             <Stack spacing={2}>
               <TextField
-                size="small"
                 name="name"
-                label="Enter Your Name"
+                label="Your Name"
                 fullWidth
+                required
                 value={form.name}
                 onChange={handleChange}
               />
+
               <TextField
-                size="small"
                 name="phone"
                 label="Phone Number"
                 fullWidth
+                required
                 value={form.phone}
                 onChange={handleChange}
               />
+
               <TextField
-                size="small"
                 name="email"
-                label="Enter Your Email Id"
+                label="Email Address"
                 type="email"
                 fullWidth
+                required
                 value={form.email}
                 onChange={handleChange}
               />
+
               <TextField
-                size="small"
                 name="message"
-                label="Message"
+                label="Your Message"
                 fullWidth
                 multiline
                 minRows={3}
+                required
                 value={form.message}
                 onChange={handleChange}
               />
 
+              {/* BUTTONS — SMALLER & MODERN */}
               <Stack
-                direction={{ xs: 'column', sm: 'row' }}
-                spacing={1.5}
-                sx={{ mt: 1 }}
+                direction={{ xs: "column", sm: "row" }}
+                spacing={2}
+                sx={{ pt: 1 }}
               >
                 <Button
                   type="submit"
                   variant="contained"
                   fullWidth
-                  sx={{ py: 1.2 }}
+                  sx={{
+                    py: 1,
+                    borderRadius: 2,
+                    fontSize: "0.9rem",
+                    textTransform: "none",
+                    fontWeight: 600,
+                  }}
                 >
                   Send
                 </Button>
 
-                {/* Explicit WhatsApp button inside form */}
                 <Button
                   variant="outlined"
-                  fullWidth
                   startIcon={<WhatsAppIcon />}
+                  fullWidth
                   onClick={handleSubmit}
+                  sx={{
+                    py: 1,
+                    borderRadius: 2,
+                    fontSize: "0.9rem",
+                    textTransform: "none",
+                    borderColor: "#25D366",
+                    color: "#25D366",
+                    fontWeight: 600,
+                    "&:hover": {
+                      background: "rgba(37,211,102,0.08)",
+                      borderColor: "#1EBE57",
+                    },
+                  }}
                 >
-                  Connect on WhatsApp
+                  WhatsApp
                 </Button>
               </Stack>
             </Stack>
           </Box>
-        </Box>
+        </Paper>
       </Box>
     </SectionWrapper>
   );
