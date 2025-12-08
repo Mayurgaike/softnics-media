@@ -3,15 +3,15 @@ import { Box, Container, Typography } from '@mui/material';
 
 const SectionWrapper = ({ id, title, subtitle, children, bg = 'transparent' }) => {
   return (
-    <Box id={id} sx={{ py: { xs: 6, md: 8 }, bgcolor: bg }}>
-      <Container>
+    <Box id={id} sx={{ py: { xs: 6, md: 8 }, bgcolor: bg  }}>
+      <Container sx={{ minWidth:'80%' }}>
         {title && (
           <Typography variant="h4" align="center" sx={{ fontWeight: 700, mb: 1 }}>
             {title}
           </Typography>
         )}
         {subtitle && (
-          <Typography variant="body1" align="center" color="text.secondary" sx={{ mb: 4 }}>
+          <Typography variant="body1" align="center" color="text.secondary" sx={{ mb: 8 }}>
             {subtitle}
           </Typography>
         )}

@@ -55,14 +55,14 @@ const ClientsSection = () => {
                   height: 160,
                   borderRadius: '20px',
                   background: '#ffffff',
-                  border: '1px solid #e6e6e6',
+                  // border: '1px solid #e6e6e6',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
 
                   transition: 'all 0.35s ease',
 
-                  boxShadow: '0 3px 10px rgba(0,0,0,0.06)',
+                  // boxShadow: '0 3px 10px rgba(0,0,0,0.06)',
 
                   '&:hover': {
                     transform: 'translateY(-6px) scale(1.03)',   // perfect lift + scale
@@ -76,8 +76,8 @@ const ClientsSection = () => {
                   src={client.logo}
                   alt={client.name}
                   sx={{
-                    width: '80%',
-                    height: '80%',
+                    width: client?.logoWidth,
+                    height: client?.logoHeight,
                     objectFit: 'contain',
                     transition: '0.35s ease',
 

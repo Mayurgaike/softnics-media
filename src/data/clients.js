@@ -10,7 +10,7 @@ import saajBellalogo from '../assets/client/saajBellalogo.png';
 import saikrupaAstrologer from '../assets/client/saikrupaAstrologer.png';
 import SBNhair from '../assets/client/SBNhair.jpg';
 import shagunTadka from '../assets/client/shagunTadka.jpg';
-import sonwaneClass from '../assets/client/sonwaneClass.jpeg';
+import sonwaneClass from '../assets/client/sonwaneClass.png';
 import UnnatiLogo from '../assets/client/UnnatiLogo.jpg';
 import xtremeLogo from '../assets/client/xtremeLogo.jpg';
 import dentist from '../assets/client/dentist.jpg';
@@ -22,6 +22,8 @@ export const clients = [
     id: 'marathi-beardman-podcast',
     name: 'The Marathi Beardman Podcast',
     logo: Marathibeardman,
+    logoHeight: "70%",
+    logoWidth: "70%",
     shortSummary: 'Brand identity, digital presence and audience engagement.',
     details: [
       'Established strong brand identity with premium graphics and editing.',
@@ -41,6 +43,8 @@ export const clients = [
     id: 'aarya-sea-foodz',
     name: 'Aarya Sea Foodz',
     logo: aaryaFootz,
+    logoHeight: "70%",
+    logoWidth: "70%",
     shortSummary: 'Customer reach growth, franchise lead generation & brand identity.',
     details: [
       'Expanded customer reach across digital platforms.',
@@ -61,6 +65,8 @@ export const clients = [
     id: '6shadows-animation-vfx-academy',
     name: '6Shadows Animation & VFX Academy',
     logo: shadowAcademy,
+    logoHeight: "70%",
+    logoWidth: "70%",
     shortSummary: 'Branding, student engagement and digital presence.',
     details: [
       'Improved institute branding through modern visuals.',
@@ -78,6 +84,8 @@ export const clients = [
     id: 'excellence-academy',
     name: 'Excellence Academy',
     logo: excellenceAcademy,
+    logoHeight: "50%",
+    logoWidth: "80%",
     shortSummary: 'Brand awareness, student lead generation and academic reputation.',
     details: [
       'Boosted academic brand identity through creative visuals.',
@@ -95,6 +103,8 @@ export const clients = [
     id: 'holidays-care',
     name: 'Holidays Care',
     logo: holidayscare,
+    logoHeight: "90%",
+    logoWidth: "90%",
     shortSummary: 'Travel brand identity & online engagement.',
     details: [
       'Enhanced brand visibility with visually appealing travel creatives.',
@@ -112,6 +122,8 @@ export const clients = [
     id: 'hotel-vedanta',
     name: 'Hotel Vedanta',
     logo: vedantaHotel,
+    logoHeight: "75%",
+    logoWidth: "75%",
     shortSummary: 'Brand identity, customer engagement & property promotions.',
     details: [
       'Improved hotel brand identity through design and storytelling.',
@@ -129,6 +141,8 @@ export const clients = [
     id: 'house-of-home-loans',
     name: 'House Of Home Loans',
     logo: loanlogo,
+    logoHeight: "95%",
+    logoWidth: "95%",
     shortSummary: 'Lead generation and brand credibility.',
     details: [
       'Built trust with clear, professional branding.',
@@ -146,6 +160,8 @@ export const clients = [
     id: 'maid-dental-implant-center',
     name: 'Maid Dental & Implant Center',
     logo: dentist,
+    logoHeight: "50%",
+    logoWidth: "50%",
     shortSummary: 'Brand presence & healthcare service visibility.',
     details: [
       'Established medical brand identity through clean visuals.',
@@ -163,6 +179,8 @@ export const clients = [
     id: 'majesty-mattress',
     name: 'Majesty Mattress',
     logo: Majestymattress,
+    logoHeight: "95%",
+    logoWidth: "95%",
     shortSummary: 'Brand marketing and product awareness.',
     details: [
       'Created a premium visual identity for the mattress brand.',
@@ -180,6 +198,8 @@ export const clients = [
     id: 'sbn-hair-studio',
     name: 'New SBN Hair Studio',
     logo: SBNhair,
+    logoHeight: "50%",
+    logoWidth: "50%",
     shortSummary: 'Salon branding & client engagement.',
     details: [
       'Enhanced salon identity with modern creative designs.',
@@ -197,6 +217,8 @@ export const clients = [
     id: 'saaj-bella-home',
     name: 'Saaj Bella Home',
     logo: saajBellalogo,
+    logoHeight: "90%",
+    logoWidth: "90%",
     shortSummary: 'Home decor branding & online presence.',
     details: [
       'Created a strong and elegant brand identity.',
@@ -214,6 +236,8 @@ export const clients = [
     id: 'sai-krupa-astro-world',
     name: 'Sai Krupa Astro World',
     logo: saikrupaAstrologer,
+    logoHeight: "90%",
+    logoWidth: "90%",
     shortSummary: 'Brand identity & trust building in astrology services.',
     details: [
       'Built a trustworthy spiritual brand identity.',
@@ -231,6 +255,8 @@ export const clients = [
     id: 'shagun-tadka',
     name: 'Shagun Tadka',
     logo: shagunTadka,
+    logoHeight: "75%",
+    logoWidth: "75%",
     shortSummary: 'Restaurant branding & customer engagement.',
     details: [
       'Improved restaurant visibility with attractive food creatives.',
@@ -248,6 +274,8 @@ export const clients = [
     id: 'sonawane-accountancy-classes',
     name: 'Sonawane Accountancy Classes',
     logo: sonwaneClass,
+    logoHeight: "55%",
+    logoWidth: "55%",
     shortSummary: 'Educational branding & student lead generation.',
     details: [
       'Enhanced institute credibility with professional branding.',
@@ -265,6 +293,8 @@ export const clients = [
     id: 'unnati-trading-classes',
     name: 'Unnati Trading Classes',
     logo: UnnatiLogo,
+    logoHeight: "80%",
+    logoWidth: "80%",
     shortSummary: 'Branding and institute visibility.',
     details: [
       'Strengthened educational brand presence.',
@@ -282,6 +312,8 @@ export const clients = [
     id: 'xtreme-fitness-club',
     name: 'Xtreme Fitness Club',
     logo: xtremeLogo,
+    logoHeight: "95%",
+    logoWidth: "95%",
     shortSummary: 'Gym branding & membership engagement.',
     details: [
       'Developed powerful fitness brand identity.',
