@@ -1,4 +1,3 @@
-// src/pages/ServiceDetailPage.jsx
 import React from "react";
 import { useParams, Link as RouterLink } from "react-router-dom";
 import {
@@ -8,14 +7,15 @@ import {
   Chip,
   Stack,
   Button,
+  Card,
+  CardContent,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { services } from "../data/services";
-import SectionWrapper from "../components/common/SectionWrapper";
 import { styled } from "@mui/material/styles";
 
 const Bullet = styled("li")(({ theme }) => ({
-  marginBottom: theme.spacing(0.75),
+  marginBottom: theme.spacing(1.2),
 }));
 
 const ServiceDetailPage = () => {
@@ -24,8 +24,11 @@ const ServiceDetailPage = () => {
 
   if (!service) {
     return (
-      <SectionWrapper id="service-not-found" title="Service Not Found">
-        <Typography variant="body1" sx={{ mb: 2 }}>
+      <Container maxWidth="md" sx={{ py: 10, textAlign: "center" }}>
+        <Typography variant="h3" sx={{ fontWeight: 800, mb: 2 }}>
+          Service Not Found
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 4 }}>
           The service you are looking for does not exist or has been moved.
         </Typography>
         <Button
@@ -36,85 +39,155 @@ const ServiceDetailPage = () => {
         >
           Back to Home
         </Button>
-      </SectionWrapper>
+      </Container>
     );
   }
 
   return (
-    <Box sx={{ py: { xs: 6, md: 8 } }}>
+    <Box sx={{ py: { xs: 6, md: 10 }, background: "linear-gradient(#f9fbff, #ffffff)" }}>
       <Container maxWidth="md">
+
+        {/* Back Button */}
         <Button
           startIcon={<ArrowBackIcon />}
           component={RouterLink}
           to="/"
-          sx={{ mb: 3 }}
+          sx={{
+            mb: 4,
+            borderRadius: 3,
+            px: 2.5,
+            py: 1,
+            boxShadow: "0 2px 8px rgba(0,0,0,0.10)",
+            background: "#fff",
+            "&:hover": { background: "#f1f5f9" },
+          }}
         >
           Back to Home
         </Button>
 
-        <Typography variant="h3" sx={{ fontWeight: 700, mb: 1 }}>
-          {service.title}
-        </Typography>
+        {/* Hero Section */}
+        <Box sx={{ textAlign: "center", mb: 6 }}>
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 800,
+              mb: 1,
+              color: "primary.main",
+            }}
+          >
+            {service.title}
+          </Typography>
 
-        <Typography variant="subtitle1" color="text.secondary" sx={{ mb: 3 }}>
-          Our Creative &amp; Digital Services • {service.title}
-        </Typography>
+          <Typography variant="subtitle1" color="text.secondary" sx={{ mb: 2 }}>
+            Elevating your brand with powerful digital & creative solutions.
+          </Typography>
 
-        <Typography variant="body1" sx={{ mb: 3 }}>
-          At our agency, we provide complete creative, digital, and technology
-          solutions designed to help brands grow, stand out, and succeed. From
-          eye-catching design to powerful marketing and professional production
-          services — we deliver everything your business needs under one roof.
-        </Typography>
-
-        <Chip
-          label="Key Service Area"
-          color="primary"
-          variant="outlined"
-          sx={{ mb: 2 }}
-        />
-
-        <Typography variant="h6" sx={{ mt: 1, mb: 1.5 }}>
-          What we do in {service.title}
-        </Typography>
-
-        <Typography variant="body1" sx={{ mb: 2 }}>
-          {service.intro}
-        </Typography>
-
-        <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
-          Our key offerings:
-        </Typography>
-
-        <Box component="ul" sx={{ pl: 3, mb: 3 }}>
-          {service.offerings.map((item) => (
-            <Bullet key={item}>
-              <Typography variant="body2">{item}</Typography>
-            </Bullet>
-          ))}
+          <Chip
+            label={`Category: ${service.title}`}
+            color="primary"
+            variant="outlined"
+          />
         </Box>
 
-        <Typography variant="body1" sx={{ mb: 3 }}>
-          {service.closing}
-        </Typography>
+        {/* Main Content Card */}
+        <Card
+          sx={{
+            borderRadius: 4,
+            p: { xs: 2, md: 4 },
+            boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
+            mb: 4,
+          }}
+        >
+          <CardContent>
 
-        <Stack direction="row" spacing={2} sx={{ mt: 2, flexWrap: "wrap" }}>
-          <Button
-            variant="contained"
-            component={RouterLink}
-            to="/#contact"
-            sx={{ scrollBehavior: "smooth" }}
-          >
-            Discuss this service
-          </Button>
-          <Button
-            variant="outlined"
-            component={RouterLink}
-            to="/"
-          >
-            Explore all services
-          </Button>
-        </Stack>
+            {/* Introduction */}
+            <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.7 }}>
+              At Softnics Media, we help brands stand out with strategic creative,
+              marketing, and technology services. Our goal is to deliver impactful
+              results that help businesses grow and achieve digital excellence.
+            </Typography>
+
+            {/* Service Intro */}
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: 700, mb: 1.5, color: "primary.main" }}
+            >
+              What we do in {service.title}
+            </Typography>
+
+            <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.7 }}>
+              {service.intro}
+            </Typography>
+
+            {/* Offerings List */}
+            <Typography
+              variant="subtitle1"
+              sx={{ fontWeight: 700, mb: 1, mt: 2 }}
+            >
+              Key Offerings:
+            </Typography>
+
+            <Box component="ul" sx={{ pl: 3, mb: 3 }}>
+              {service.offerings.map((item) => (
+                <Bullet key={item}>
+                  <Typography variant="body1" sx={{ lineHeight: 1.6 }}>
+                    {item}
+                  </Typography>
+                </Bullet>
+              ))}
+            </Box>
+
+            {/* Closing */}
+            <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.7 }}>
+              {service.closing}
+            </Typography>
+          </CardContent>
+        </Card>
+
+        
+        {/* CTA Buttons */}
+<Stack
+  direction="row"
+  spacing={2}
+  justifyContent="center"
+  sx={{ mt: 4, flexWrap: "wrap" }}
+>
+  {/* Button Style Once */}
+  {[
+    {
+      label: "Discuss this service",
+      to: "/#contact",
+    },
+    {
+      label: "Explore all services",
+      to: "/#services",   // ⭐ FIXED: scroll to Services section
+    },
+  ].map((btn) => (
+    <Button
+      key={btn.label}
+      variant="contained"
+      size="large"
+      component={RouterLink}
+      to={btn.to}
+      sx={{
+        borderRadius: 3,
+        px: 4,
+        py: 1.2,
+        fontWeight: 600,
+        background: "linear-gradient(90deg, #2563eb, #3b82f6)",
+        boxShadow: "0 6px 18px rgba(37, 99, 235, 0.35)",
+        textTransform: "none",
+        "&:hover": {
+          background: "linear-gradient(90deg, #1e40af, #2563eb)",
+          boxShadow: "0 8px 22px rgba(30, 64, 175, 0.45)",
+        },
+      }}
+    >
+      {btn.label}
+    </Button>
+  ))}
+</Stack>
+
       </Container>
     </Box>
   );

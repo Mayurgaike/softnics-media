@@ -70,7 +70,7 @@ const ServicesSection = () => {
             sx={{
               width: { xs: "100%", sm: "47%", md: "30%" },
               border: "1px solid #E5E7EB",
-              borderRadius: 3,
+              borderRadius: 2,
               p: 3,
               backgroundColor: "white",
               transition: "0.3s ease",
