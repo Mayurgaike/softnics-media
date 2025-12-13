@@ -8,6 +8,7 @@ import {
   IconButton,
   Paper,
 } from "@mui/material";
+
 import SectionWrapper from "../common/SectionWrapper";
 
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -18,6 +19,8 @@ import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
+import ReCAPTCHA from "react-google-recaptcha";
+
 const ContactSection = () => {
   const [form, setForm] = useState({
     name: "",
@@ -26,6 +29,14 @@ const ContactSection = () => {
     message: "",
   });
 
+  const [captchaVerified, setCaptchaVerified] = useState(false);
+
+  const handleCaptcha = (value) => {
+    if (value) {
+      setCaptchaVerified(true);
+    }
+  };
+
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -33,7 +44,11 @@ const ContactSection = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Required validation
+    if (!captchaVerified) {
+      alert("Please complete the CAPTCHA verification.");
+      return;
+    }
+
     if (!form.name || !form.phone || !form.email || !form.message) {
       alert("Please fill all fields before submitting.");
       return;
@@ -123,14 +138,14 @@ const ContactSection = () => {
           </Stack>
         </Box>
 
-        {/* RIGHT FORM CARD */}
+        {/* RIGHT FORM PANEL */}
         <Paper
           elevation={5}
           sx={{
             flex: 1,
             p: { xs: 3, md: 3 },
             borderRadius: 1,
-            maxWidth: 500,  // Smaller width form
+            maxWidth: 500,
             mx: "auto",
           }}
         >
@@ -183,7 +198,13 @@ const ContactSection = () => {
                 onChange={handleChange}
               />
 
-              {/* BUTTONS — SMALLER & MODERN */}
+              {/* CAPTCHA */}
+              <ReCAPTCHA
+                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                onChange={handleCaptcha}
+              />
+
+              {/* BUTTONS */}
               <Stack
                 direction={{ xs: "column", sm: "row" }}
                 spacing={2}
@@ -194,12 +215,26 @@ const ContactSection = () => {
                   variant="contained"
                   fullWidth
                   sx={{
-                    py: 1,
-                    borderRadius: 2,
-                    fontSize: "0.9rem",
-                    textTransform: "none",
+                    borderRadius: 3,
+                    px: 4,
+                    py: 1.2,
                     fontWeight: 600,
+                    fontSize: "0.9rem",
+                    background: "linear-gradient(90deg, #2563eb, #3b82f6)",
+                    boxShadow: "0 6px 18px rgba(37, 99, 235, 0.35)",
+                    textTransform: "none",
+                    "&:hover": {
+                      background: "linear-gradient(90deg, #1e40af, #2563eb)",
+                      boxShadow: "0 8px 22px rgba(30, 64, 175, 0.45)",
+                    },
                   }}
+                  // sx={{
+                  //   py: 1,
+                  //   borderRadius: 2,
+                  //   fontSize: "0.9rem",
+                  //   textTransform: "none",
+                  //   fontWeight: 600,
+                  // }}
                 >
                   Send
                 </Button>

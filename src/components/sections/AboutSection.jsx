@@ -100,7 +100,19 @@ const AboutSection = () => {
             <Button
               variant="contained"
               href="#contact"
-              sx={{ py: 1.25 }}
+              sx={{
+                borderRadius: 3,
+                px: 4,
+                py: 1.2,
+                fontWeight: 600,
+                background: "linear-gradient(90deg, #2563eb, #3b82f6)",
+                boxShadow: "0 6px 18px rgba(37, 99, 235, 0.35)",
+                textTransform: "none",
+                "&:hover": {
+                  background: "linear-gradient(90deg, #1e40af, #2563eb)",
+                  boxShadow: "0 8px 22px rgba(30, 64, 175, 0.45)",
+                },
+              }}
             >
               Discuss A Project
             </Button>

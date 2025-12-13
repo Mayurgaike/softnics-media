@@ -44,9 +44,13 @@ const ServiceDetailPage = () => {
   }
 
   return (
-    <Box sx={{ py: { xs: 6, md: 10 }, background: "linear-gradient(#f9fbff, #ffffff)" }}>
+    <Box
+      sx={{
+        py: { xs: 6, md: 10 },
+        background: "linear-gradient(#f9fbff, #ffffff)",
+      }}
+    >
       <Container maxWidth="md">
-
         {/* Back Button */}
         <Button
           startIcon={<ArrowBackIcon />}
@@ -99,12 +103,12 @@ const ServiceDetailPage = () => {
           }}
         >
           <CardContent>
-
             {/* Introduction */}
             <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.7 }}>
-              At Softnics Media, we help brands stand out with strategic creative,
-              marketing, and technology services. Our goal is to deliver impactful
-              results that help businesses grow and achieve digital excellence.
+              At Softnics Media, we help brands stand out with strategic
+              creative, marketing, and technology services. Our goal is to
+              deliver impactful results that help businesses grow and achieve
+              digital excellence.
             </Typography>
 
             {/* Service Intro */}
@@ -144,50 +148,48 @@ const ServiceDetailPage = () => {
           </CardContent>
         </Card>
 
-        
         {/* CTA Buttons */}
-<Stack
-  direction="row"
-  spacing={2}
-  justifyContent="center"
-  sx={{ mt: 4, flexWrap: "wrap" }}
->
-  {/* Button Style Once */}
-  {[
-    {
-      label: "Discuss this service",
-      to: "/#contact",
-    },
-    {
-      label: "Explore all services",
-      to: "/#services",   // ⭐ FIXED: scroll to Services section
-    },
-  ].map((btn) => (
-    <Button
-      key={btn.label}
-      variant="contained"
-      size="large"
-      component={RouterLink}
-      to={btn.to}
-      sx={{
-        borderRadius: 3,
-        px: 4,
-        py: 1.2,
-        fontWeight: 600,
-        background: "linear-gradient(90deg, #2563eb, #3b82f6)",
-        boxShadow: "0 6px 18px rgba(37, 99, 235, 0.35)",
-        textTransform: "none",
-        "&:hover": {
-          background: "linear-gradient(90deg, #1e40af, #2563eb)",
-          boxShadow: "0 8px 22px rgba(30, 64, 175, 0.45)",
-        },
-      }}
-    >
-      {btn.label}
-    </Button>
-  ))}
-</Stack>
-
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="center"
+          sx={{ mt: 4, flexWrap: "wrap" }}
+        >
+          {/* Button Style Once */}
+          {[
+            {
+              label: "Discuss this service",
+              to: "/#contact",
+            },
+            {
+              label: "Explore all services",
+              to: "/#services", // ⭐ FIXED: scroll to Services section
+            },
+          ].map((btn) => (
+            <Button
+              key={btn.label}
+              variant="contained"
+              size="large"
+              component={RouterLink}
+              to={btn.to}
+              sx={{
+                borderRadius: 3,
+                px: 4,
+                py: 1.2,
+                fontWeight: 600,
+                background: "linear-gradient(90deg, #2563eb, #3b82f6)",
+                boxShadow: "0 6px 18px rgba(37, 99, 235, 0.35)",
+                textTransform: "none",
+                "&:hover": {
+                  background: "linear-gradient(90deg, #1e40af, #2563eb)",
+                  boxShadow: "0 8px 22px rgba(30, 64, 175, 0.45)",
+                },
+              }}
+            >
+              {btn.label}
+            </Button>
+          ))}
+        </Stack>
       </Container>
     </Box>
   );
