@@ -32,8 +32,8 @@ const TeamSection = () => {
           <Box
             sx={{
               width: "100%",
-              maxWidth: 420,
-              height: { xs: 360, md: 420 },   // 🔒 HARD SIZE
+              maxWidth: 350,
+              height: { xs: 290, md: 350 },   // 🔒 HARD SIZE
               borderRadius: 2,
               backgroundColor: "#f8fafc",
               boxShadow: "0 10px 30px rgba(0,0,0,0.15)",

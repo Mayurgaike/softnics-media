@@ -16,6 +16,7 @@ import {
 import { Link as ScrollLink } from "react-scroll";
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import logo from "../../assets/logo.png";
 
@@ -29,7 +30,7 @@ function HideOnScroll({ children }) {
   );
 }
 
-// Main navigation items except Services (we'll insert it manually at position 3)
+// Main navigation items except Services
 const sections = [
   { id: "hero", label: "Home" },
   { id: "about", label: "About Us" },
@@ -50,8 +51,21 @@ const serviceList = [
   "Application Development",
 ];
 
+// Map service names → URL slugs
+const serviceSlugMap = {
+  "Graphics Designing": "graphics-designing",
+  "Digital Marketing": "digital-marketing",
+  "Photo & Video Shoot": "photo-video-shoot",
+  "Video Editing": "video-editing",
+  "Podcast Studio": "podcast-studio",
+  "Voice Artist & Recording": "voice-artist",
+  "Website Development": "website-development",
+  "Application Development": "application-development",
+};
+
 const NavBar = () => {
   const trigger = useScrollTrigger({ threshold: 10 });
+  const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileAnchor, setMobileAnchor] = useState(null);
@@ -69,7 +83,7 @@ const NavBar = () => {
           borderBottom: trigger ? "1px solid #e5e7eb" : "none",
         }}
       >
-        <Container sx={{minWidth:'100%'}}>
+        <Container sx={{ minWidth: "100%" }}>
           <Toolbar
             sx={{
               display: "flex",
@@ -102,8 +116,7 @@ const NavBar = () => {
             >
               {sections.map((section, index) => (
                 <React.Fragment key={section.id}>
-
-                  {/* INSERT SERVICES DROPDOWN BUTTON ONLY AT POSITION 3 */}
+                  {/* Insert SERVICES dropdown at position 3 */}
                   {index === 2 && (
                     <Button
                       onClick={(e) => setAnchorEl(e.currentTarget)}
@@ -124,7 +137,7 @@ const NavBar = () => {
                     </Button>
                   )}
 
-                  {/* NORMAL NAVIGATION BUTTONS */}
+                  {/* Normal Nav buttons */}
                   <ScrollLink
                     to={section.id}
                     smooth
@@ -173,7 +186,11 @@ const NavBar = () => {
                         color: "white",
                       },
                     }}
-                    onClick={() => setAnchorEl(null)}
+                    onClick={() => {
+                      setAnchorEl(null);
+                      const slug = serviceSlugMap[service];
+                      navigate(`/services/${slug}`);
+                    }}
                   >
                     {service}
                   </MenuItem>
@@ -189,7 +206,7 @@ const NavBar = () => {
               <MenuIcon fontSize="large" />
             </IconButton>
 
-            {/* MOBILE MENU — WITHOUT SERVICES DROPDOWN */}
+            {/* MOBILE MENU */}
             <Menu
               anchorEl={mobileAnchor}
               open={Boolean(mobileAnchor)}

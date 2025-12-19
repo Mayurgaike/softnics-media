@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Container, Typography, Stack } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -11,18 +12,41 @@ const Footer = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
           gap: 1,
-          
           minWidth: '80%',
         }}
       >
         <Typography variant="body2">
           © {new Date().getFullYear()} Softnics Media. All rights reserved.
         </Typography>
+
         <Stack direction="row" spacing={2}>
-          <Typography variant="body2" sx={{ opacity: 0.8 }}>
+          <Typography
+            variant="body2"
+            component={Link}
+            to="/privacy-policy"
+            sx={{
+              opacity: 0.9,
+              cursor: "pointer",
+              textDecoration: "none",
+              color: "inherit",
+              "&:hover": { textDecoration: "underline" },
+            }}
+          >
             Privacy Policy
           </Typography>
-          <Typography variant="body2" sx={{ opacity: 0.8 }}>
+
+          <Typography
+            variant="body2"
+            component={Link}
+            to="/terms-conditions"
+            sx={{
+              opacity: 0.9,
+              cursor: "pointer",
+              textDecoration: "none",
+              color: "inherit",
+              "&:hover": { textDecoration: "underline" },
+            }}
+          >
             Terms & Conditions
           </Typography>
         </Stack>

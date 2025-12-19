@@ -5,6 +5,8 @@ import Box from "@mui/material/Box";
 import SocialBar from "./components/layout/SocialBar";
 import NavBar from "./components/layout/NavBar";
 import Footer from "./components/layout/Footer";
+import PrivacyPolicy from "./pages/Policy";
+import TermsConditions from "./pages/TermsConditions";
 import WhatsAppButton from "./components/layout/WhatsAppButton";
 
 import HomePage from "./pages/HomePage";
@@ -21,6 +23,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/services/:slug" element={<ServiceDetailPage />} />
+
+        {/* LEGAL PAGES */}
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-conditions" element={<TermsConditions />} />
       </Routes>
 
       <SocialBar />

@@ -1,4 +1,4 @@
-import { Box, Typography, Container } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Slider from "react-slick";
 
 import hero1 from "../../assets/hero/hero1.jpg";
@@ -37,7 +37,6 @@ const slides = [
 
 const HeroSlider = () => {
   const settings = {
-    // dots: true,
     infinite: true,
     autoplay: true,
     speed: 700,
@@ -53,9 +52,9 @@ const HeroSlider = () => {
       id="hero"
       sx={{
         position: "relative",
-        height: "100vh", // FULL SCREEN
-        minHeight: 500, // fallback for small screens
-        bgcolor: "primary.main",
+        height: { xs: "70vh", sm: "80vh", md: "100vh" }, // ⭐ Responsive height
+        minHeight: { xs: 350, sm: 450, md: 500 },
+        overflow: "hidden",
       }}
     >
       <Slider {...settings}>
@@ -64,8 +63,8 @@ const HeroSlider = () => {
             key={idx}
             sx={{
               position: "relative",
-              height: "100vh",
-              minHeight: 500,
+              height: { xs: "70vh", sm: "80vh", md: "100vh" },
+              minHeight: { xs: 350, sm: 450, md: 500 },
             }}
           >
             <Box
@@ -75,12 +74,13 @@ const HeroSlider = () => {
               sx={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover", // ensures no cropping issues
+                objectFit: "cover",
+                objectPosition: { xs: "center top", md: "center" }, 
                 filter: "brightness(0.55)",
               }}
             />
 
-            {/* TEXT */}
+            {/* TEXT AREA */}
             <Box
               sx={{
                 position: "absolute",
@@ -88,8 +88,8 @@ const HeroSlider = () => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                alignItems: "flex-start",
-                px: { xs: 2, md: 6 },
+                px: { xs: 2, sm: 3, md: 6 },
+                maxWidth: "800px",
               }}
             >
               <Typography
@@ -97,9 +97,13 @@ const HeroSlider = () => {
                 sx={{
                   color: "white",
                   fontWeight: 700,
-                  maxWidth: 700,
                   mb: 1,
                   lineHeight: 1.2,
+                  fontSize: {
+                    xs: "1.6rem",
+                    sm: "2.2rem",
+                    md: "3rem",
+                  }, // ⭐ Responsive text size
                 }}
               >
                 {slide.title}
@@ -110,8 +114,12 @@ const HeroSlider = () => {
                 sx={{
                   color: "white",
                   opacity: 0.85,
-                  maxWidth: 600,
                   lineHeight: 1.4,
+                  fontSize: {
+                    xs: "0.9rem",
+                    sm: "1.1rem",
+                    md: "1.3rem",
+                  },
                 }}
               >
                 {slide.subtitle}
