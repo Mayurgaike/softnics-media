@@ -39,6 +39,15 @@ const sections = [
   { id: "contact", label: "Contact Us" },
 ];
 
+const sections_mobile = [
+  { id: "hero", label: "Home" },
+  { id: "about", label: "About Us" },
+  { id: "services", label: "Services" },
+  { id: "clients", label: "Portfolio" },
+  { id: "team", label: "Team" },
+  { id: "contact", label: "Contact Us" },
+];
+
 // Services dropdown list
 const serviceList = [
   "Graphics Designing",
@@ -216,7 +225,7 @@ const NavBar = () => {
                 sx: { width: 260, borderRadius: 3, p: 1 },
               }}
             >
-              {sections.map((section) => (
+              {sections_mobile.map((section) => (
                 <MenuItem key={section.id} onClick={() => setMobileAnchor(null)}>
                   <ScrollLink
                     to={section.id}

@@ -7,6 +7,8 @@ import {
   DialogContent,
   IconButton,
   Stack,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
@@ -21,19 +23,22 @@ import { clients } from "../../data/clients";
 const ClientsSection = () => {
   const [selectedClient, setSelectedClient] = useState(null);
 
+  const theme = useTheme();
+  const isXs = useMediaQuery(theme.breakpoints.down("sm")); 
+  const isSm = useMediaQuery(theme.breakpoints.between("sm", "md")); 
+  const isMd = useMediaQuery(theme.breakpoints.between("md", "lg")); 
+
+  const slidesToShow = isXs ? 2 : isSm ? 3 : isMd ? 4 : 5;
+
   const settings = {
     dots: false,
     infinite: true,
     autoplay: true,
-    slidesToShow: 5,
-    slidesToScroll: 1,
     speed: 500,
     autoplaySpeed: 1500,
-    responsive: [
-      { breakpoint: 1200, settings: { slidesToShow: 4 } },
-      { breakpoint: 900, settings: { slidesToShow: 3 } },
-      { breakpoint: 600, settings: { slidesToShow: 2 } },
-    ],
+    slidesToScroll: 1,
+    slidesToShow,
+    arrows: false,
   };
 
   return (
@@ -43,15 +48,37 @@ const ClientsSection = () => {
       subtitle="Brands that trust us with their digital growth."
       bg="white"
     >
-      <Box sx={{ px: { xs: 1, md: 4 }, py: { xs: 2, md: 4 } }}>
+      <Box
+        sx={{
+          px: { xs: 1, md: 4 },
+          py: { xs: 2, md: 4 },
+          overflow: "hidden",
+
+          "& .slick-track": {
+            display: "flex",
+            alignItems: "center",
+          },
+          "& .slick-slide": {
+            display: "flex",
+            justifyContent: "center",
+          },
+        }}
+      >
         <Slider {...settings}>
           {clients.map((client) => (
-            <Box key={client.id} sx={{ px: { xs: 1, md: 1.5 } }}>
+            <Box
+              key={client.id}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <Box
                 onClick={() => setSelectedClient(client)}
                 sx={{
                   cursor: "pointer",
-                  height: { xs: 120, md: 160 },
+                  height: { xs: 110, md: 160 },
+                  width: { xs: 110, md: 160 },
                   borderRadius: 3,
                   background: "#fff",
                   display: "flex",
@@ -69,8 +96,8 @@ const ClientsSection = () => {
                   src={client.logo}
                   alt={client.name}
                   sx={{
-                    maxWidth: { xs: "80%", md: client.logoWidth },
-                    maxHeight: { xs: 60, md: client.logoHeight },
+                    maxWidth: client.logoWidth,
+                    maxHeight: client.logoHeight,
                     objectFit: "contain",
                   }}
                 />
@@ -80,7 +107,6 @@ const ClientsSection = () => {
         </Slider>
       </Box>
 
-      {/* CLIENT DETAILS MODAL */}
       <Dialog
         open={!!selectedClient}
         onClose={() => setSelectedClient(null)}
@@ -123,7 +149,6 @@ const ClientsSection = () => {
                 ))}
               </ul>
 
-              {/* SOCIAL ICONS */}
               <Stack direction="row" spacing={2} sx={{ mt: 3 }}>
                 {selectedClient.links.youtube && (
                   <IconButton
@@ -134,7 +159,6 @@ const ClientsSection = () => {
                     <YouTubeIcon fontSize="large" />
                   </IconButton>
                 )}
-
                 {selectedClient.links.instagram && (
                   <IconButton
                     href={selectedClient.links.instagram}
@@ -144,7 +168,6 @@ const ClientsSection = () => {
                     <InstagramIcon fontSize="large" />
                   </IconButton>
                 )}
-
                 {selectedClient.links.facebook && (
                   <IconButton
                     href={selectedClient.links.facebook}

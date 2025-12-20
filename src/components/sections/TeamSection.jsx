@@ -47,8 +47,8 @@ const TeamSection = () => {
           >
             <Box
               sx={{
-                width: 120,
-                height: 120,
+                width: 80,
+                height: 80,
                 borderRadius: "50%",
                 mb: 2,
                 background: "linear-gradient(135deg,#1e3a8a,#3b82f6)",
@@ -95,7 +95,7 @@ const TeamSection = () => {
             <Box
               key={member.name}
               sx={{
-                height: 320,          // 🔒 HARD SIZE (THIS SOLVES EVERYTHING)
+                height: 250,          // 🔒 HARD SIZE (THIS SOLVES EVERYTHING)
                 borderRadius: 1,
                 backgroundColor: "#f8fafc",
                 boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
@@ -136,7 +136,7 @@ const TeamSection = () => {
                   color: "text.secondary",
                   maxWidth: 220,
                   display: "-webkit-box",
-                  WebkitLineClamp: 2,
+                  WebkitLineClamp: 1,
                   WebkitBoxOrient: "vertical",
                   overflow: "hidden",
                 }}

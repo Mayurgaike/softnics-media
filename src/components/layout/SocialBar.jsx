@@ -30,9 +30,9 @@ const SocialBar = () => {
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <MailOutlineIcon sx={{ fontSize: 18 }} />
           <span>softnicsmedia@gmail.com</span>
-
+{/* 
           <PhoneIcon sx={{ fontSize: 18, ml: 2 }} />
-          <span>+91 99212 23986 / 093093 56702</span>
+          <span>+91 99212 23986 / 093093 56702</span> */}
         </Box>
 
         {/* SOCIAL LINKS */}

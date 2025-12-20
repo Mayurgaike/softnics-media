@@ -1,5 +1,5 @@
 // src/components/sections/MissionVisionSection.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
 import SectionWrapper from "../common/SectionWrapper";
 
@@ -23,11 +23,36 @@ const SMART_ITEMS = [
 ];
 
 const MissionVisionSection = () => {
-  // typing effect for search bar text (runs only once)
   const fullText = "Efficient & Consistent With Achievable!";
   const [displayText, setDisplayText] = useState("");
+  const [hasStarted, setHasStarted] = useState(false);
 
+  const searchBoxRef = useRef(null);
+
+  // 👇 Trigger typing ONLY when visible
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasStarted) {
+          setHasStarted(true);
+        }
+      },
+      {
+        threshold: 0.4, // 40% visible is enough
+      }
+    );
+
+    if (searchBoxRef.current) {
+      observer.observe(searchBoxRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasStarted]);
+
+  // 👇 Typing effect (runs once when visible)
+  useEffect(() => {
+    if (!hasStarted) return;
+
     let index = 0;
 
     const interval = setInterval(() => {
@@ -40,7 +65,7 @@ const MissionVisionSection = () => {
     }, 45);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [hasStarted]);
 
   return (
     <SectionWrapper
@@ -49,7 +74,7 @@ const MissionVisionSection = () => {
       subtitle="Guiding every strategy, shaping every success."
       bg="#F5F9FF"
     >
-      {/* ---------------- Mission & Vision Section (UNCHANGED) ---------------- */}
+      {/* ---------------- Mission & Vision Section ---------------- */}
       <Box
         sx={{
           display: "flex",
@@ -58,7 +83,7 @@ const MissionVisionSection = () => {
           mb: { xs: 6, md: 8 },
         }}
       >
-        {/* Mission Card */}
+        {/* Mission */}
         <Box
           sx={{
             flex: 1,
@@ -82,18 +107,17 @@ const MissionVisionSection = () => {
             },
           }}
         >
-          <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>
+          <Typography variant="h6" fontWeight={700} mb={1}>
             Our Mission
           </Typography>
-
-          <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>
-            To empower brands with innovative creative solutions that blend strategy,
-            technology, and storytelling — helping businesses grow, build meaningful
-            connections, and achieve measurable success.
+          <Typography variant="body2" color="text.secondary" lineHeight={1.7}>
+            To empower brands with innovative creative solutions that blend
+            strategy, technology, and storytelling — helping businesses grow,
+            build meaningful connections, and achieve measurable success.
           </Typography>
         </Box>
 
-        {/* Vision Card */}
+        {/* Vision */}
         <Box
           sx={{
             flex: 1,
@@ -117,32 +141,25 @@ const MissionVisionSection = () => {
             },
           }}
         >
-          <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>
+          <Typography variant="h6" fontWeight={700} mb={1}>
             Our Vision
           </Typography>
-
-          <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>
-            To become the most trusted digital growth partner — delivering meaningful
-            experiences, inspiring creativity, and helping brands thrive in a rapidly
-            evolving digital world.
+          <Typography variant="body2" color="text.secondary" lineHeight={1.7}>
+            To become the most trusted digital growth partner — delivering
+            meaningful experiences, inspiring creativity, and helping brands
+            thrive in a rapidly evolving digital world.
           </Typography>
         </Box>
       </Box>
 
-      {/* ---------------- WHY CHOOSE SOFTNICS TEXT ---------------- */}
-      <Typography
-        variant="h4"
-        sx={{
-          fontWeight: 800,
-          mb: 2,
-          textAlign: "center",
-        }}
-      >
+      {/* ---------------- WHY HIRE US ---------------- */}
+      <Typography variant="h4" fontWeight={800} textAlign="center" mb={2}>
         Why Hire Us
       </Typography>
 
-      {/* Google-style Search Bar */}
+      {/* 🔍 SEARCH BAR (Observed) */}
       <Box
+        ref={searchBoxRef}
         sx={{
           mx: "auto",
           width: { xs: "90%", sm: "65%", md: "50%" },
@@ -160,7 +177,7 @@ const MissionVisionSection = () => {
         <Typography
           sx={{
             flexGrow: 1,
-            color: "Blue",
+            color: "#2563EB",
             fontSize: "1rem",
             fontWeight: 500,
           }}
@@ -172,23 +189,20 @@ const MissionVisionSection = () => {
           sx={{
             width: 34,
             height: 34,
-            bgcolor: "white",
             borderRadius: "50%",
             border: "1px solid #d1d5db",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            cursor: "pointer",
           }}
         >
-          <SearchIcon sx={{ color: "#1f2937", fontSize: 22 }} />
+          <SearchIcon sx={{ fontSize: 22 }} />
         </Box>
       </Box>
 
-      {/* Why Choose Softnics description */}
-      <Typography
+       <Typography
         sx={{
-          color: "royalBlue",
+          // color: "royalBlue",
           textAlign: "center",
           maxWidth: 700,
           mx: "auto",
@@ -214,58 +228,42 @@ const MissionVisionSection = () => {
         strategic planning, and creative execution.”
       </Typography>
 
-      {/* ---------------- SMART CARDS 3×2 GRID (SMALL BOXES) ---------------- */}
-      {/* ---------------- SMART CARDS (PERFECT SMALL FLEXBOX LAYOUT) ---------------- */}
-{/* SMART CARDS (3 × 2 layout) */}
-<Box
-  sx={{
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    gap: { xs: 2, md: 3 },
-    mt: 4,
-  }}
->
-  {SMART_ITEMS.map((item, i) => (
-    <Box
-      key={i}
-      sx={{
-        width: { xs: "46%", sm: "30%", md: "28%" },   // PERFECT SIZE
-        height: 140,                                  // SMALL & CLEAN BOX
-        borderRadius: "22px",
-        bgcolor: "#FFFFFF",
-        border: "1px solid #E5E7EB",
-        boxShadow: "0 4px 14px rgba(0,0,0,0.08)",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        transition: "0.3s",
-        textAlign: "center",
-        "&:hover": {
-          boxShadow: "0 8px 20px rgba(0,0,0,0.12)",
-          transform: "translateY(-4px)",
-        },
-      }}
-    >
-      <Box sx={{ fontSize: 34, color: "#0052FF", mb: 1 }}>
-        {item.icon}
-      </Box>
-
-      <Typography
+      {/* SMART CARDS */}
+      <Box
         sx={{
-          fontWeight: 700,
-          fontSize: "0.95rem",
-          color: "#111",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: { xs: 2, md: 3 },
+          mt: 4,
         }}
       >
-        {item.label}
-      </Typography>
-    </Box>
-  ))}
-</Box>
-
-
+        {SMART_ITEMS.map((item, i) => (
+          <Box
+            key={i}
+            sx={{
+              width: { xs: "46%", sm: "30%", md: "10%" },
+              height: 120,
+              borderRadius: "22px",
+              bgcolor: "#FFFFFF",
+              border: "1px solid #E5E7EB",
+              boxShadow: "0 4px 14px rgba(0,0,0,0.08)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+          >
+            <Box sx={{ fontSize: 34, color: "#0052FF" }}>
+              {item.icon}
+            </Box>
+            <Typography fontWeight={700} fontSize="0.95rem">
+              {item.label}
+            </Typography>
+          </Box>
+        ))}
+      </Box>
     </SectionWrapper>
   );
 };

@@ -228,37 +228,8 @@ const ContactSection = () => {
                       boxShadow: "0 8px 22px rgba(30, 64, 175, 0.45)",
                     },
                   }}
-                  // sx={{
-                  //   py: 1,
-                  //   borderRadius: 2,
-                  //   fontSize: "0.9rem",
-                  //   textTransform: "none",
-                  //   fontWeight: 600,
-                  // }}
                 >
                   Send
-                </Button>
-
-                <Button
-                  variant="outlined"
-                  startIcon={<WhatsAppIcon />}
-                  fullWidth
-                  onClick={handleSubmit}
-                  sx={{
-                    py: 1,
-                    borderRadius: 2,
-                    fontSize: "0.9rem",
-                    textTransform: "none",
-                    borderColor: "#25D366",
-                    color: "#25D366",
-                    fontWeight: 600,
-                    "&:hover": {
-                      background: "rgba(37,211,102,0.08)",
-                      borderColor: "#1EBE57",
-                    },
-                  }}
-                >
-                  WhatsApp
                 </Button>
               </Stack>
             </Stack>

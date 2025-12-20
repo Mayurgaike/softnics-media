@@ -6,7 +6,7 @@ const SectionWrapper = ({ id, title, subtitle, children, bg = 'transparent' }) =
     <Box id={id} sx={{ py: { xs: 6, md: 8 }, bgcolor: bg  }}>
       <Container sx={{ minWidth:'80%' }}>
         {title && (
-          <Typography variant="h1" align="center" sx={{ fontWeight: 700, mb: 1 }}>
+          <Typography variant="h3" align="center" sx={{ fontWeight: 700, mb: 1 }}>
             {title}
           </Typography>
         )}

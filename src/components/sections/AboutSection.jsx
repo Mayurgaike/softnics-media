@@ -116,13 +116,13 @@ const AboutSection = () => {
             >
               Discuss A Project
             </Button>
-            <Button
+            {/* <Button
               variant="outlined"
-              href="/services"
+              href="#services"
               sx={{ py: 1.25 }}
             >
               Explore Services
-            </Button>
+            </Button> */}
           </Stack>
         </Box>
       </Box>
