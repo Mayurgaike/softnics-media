@@ -11,7 +11,7 @@ const SocialBar = () => {
   return (
     <Box
       sx={{
-        bgcolor: "#F5F9FF",
+        bgcolor: "#E8F0FF",
         color: "#0046C7",
         py: "10px",
         

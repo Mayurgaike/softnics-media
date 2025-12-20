@@ -17,7 +17,7 @@ const TeamSection = () => {
       id="team"
       title="Our Team"
       subtitle="Meet the creative minds shaping digital excellence."
-      bg="#F5F9FF"
+      bg="#E8F0FF"
     >
       <Box sx={{ maxWidth: 1200, mx: "auto", px: 2 }}>
 

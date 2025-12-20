@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <Box sx={{ bgcolor: "#F5F9FF", color: "#0046C7", py: 2 }}>
+    <Box sx={{ bgcolor: "#E8F0FF", color: "#0046C7", py: 2 }}>
       <Container
         sx={{
           display: "flex",

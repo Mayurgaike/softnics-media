@@ -10,7 +10,7 @@ const AboutSection = () => {
       id="about"
       title="About Us"
       subtitle="Redefining Digital Marketing Since 2020"
-      bg="#F5F9FF"
+      bg="#E8F0FF"
     >
       <Box
         sx={{
