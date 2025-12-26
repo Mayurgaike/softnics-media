@@ -1,3 +1,5 @@
+//navbar.jsx
+
 import React, { useState } from "react";
 import {
   AppBar,
@@ -17,7 +19,6 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import logo from "../../assets/logo.png";
 
-
 function HideOnScroll({ children }) {
   const trigger = useScrollTrigger();
   return (
@@ -27,21 +28,22 @@ function HideOnScroll({ children }) {
   );
 }
 
-
+// 🔥 UPDATED: removed Team, added Blog
 const sections = [
   { id: "hero", label: "Home" },
   { id: "about", label: "About Us" },
   { id: "portfolio-page", label: "Portfolio" },
-  { id: "team", label: "Team" },
+  { id: "blog", label: "Blogs" }, // NEW
   { id: "contact", label: "Contact Us" },
 ];
 
+// 🔥 UPDATED: removed Team, added Blog
 const sections_mobile = [
   { id: "hero", label: "Home" },
   { id: "about", label: "About Us" },
   { id: "services", label: "Services" },
   { id: "portfolio-page", label: "Portfolio" },
-  { id: "team", label: "Team" },
+  { id: "blog", label: "Blogs" }, // NEW
   { id: "contact", label: "Contact Us" },
 ];
 
@@ -74,8 +76,13 @@ const NavBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileAnchor, setMobileAnchor] = useState(null);
 
- 
   const handleScrollNav = (sectionId) => {
+    // 🔥 NEW: Blog page navigation
+    if (sectionId === "blog") {
+      navigate("/blogs");
+      return;
+    }
+
     if (sectionId === "portfolio-page") {
       navigate("/portfolio");
       return;
@@ -218,7 +225,6 @@ const NavBar = () => {
               </Menu>
             </Box>
 
-           
             <IconButton
               sx={{ display: { xs: "flex", md: "none" } }}
               onClick={(e) => setMobileAnchor(e.currentTarget)}
@@ -226,7 +232,6 @@ const NavBar = () => {
               <MenuIcon fontSize="large" />
             </IconButton>
 
-            
             <Menu
               anchorEl={mobileAnchor}
               open={Boolean(mobileAnchor)}
