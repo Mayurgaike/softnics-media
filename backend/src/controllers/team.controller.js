@@ -10,8 +10,12 @@ exports.create = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  await Team.update(req.body, { where: { id: req.params.id } });
-  res.json({ message: "Updated" });
+  try {
+    await Team.update(req.body || {}, { where: { id: req.params.id } });
+    res.json({ message: "Updated" });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to update team" });
+  }
 };
 
 exports.remove = async (req, res) => {

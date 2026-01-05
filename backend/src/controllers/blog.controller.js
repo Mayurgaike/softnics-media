@@ -27,25 +27,91 @@ exports.getOne = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  const { content, ...blogData } = req.body;
-  const blog = await Blog.create(blogData);
+  try {
+    const body = req.body || {};
+    const content =
+      typeof body.content === "string"
+        ? JSON.parse(body.content)
+        : body.content;
 
-  if (content?.length) {
-    await BlogBlock.bulkCreate(
-      content.map((b, index) => ({
-        blogId: blog.id,
-        type: b.type,
-        text: b.text || null,
-        items: b.items || null,
-        order: index,
-      }))
-    );
+    const blog = await Blog.create({
+      title: body.title,
+      slug: body.slug,
+      image: req.file ? `blogs/${req.file.filename}` : null,
+      date: body.date,
+      readTime: body.readTime,
+      shortDesc: body.shortDesc,
+    });
+
+    if (Array.isArray(content)) {
+      await BlogBlock.bulkCreate(
+        content.map((b, index) => ({
+          blogId: blog.id,
+          type: b.type,
+          text: b.text || null,
+          items: b.items || null,
+          order: index,
+        }))
+      );
+    }
+
+    res.status(201).json(blog);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to create blog" });
   }
-
-  res.status(201).json(blog);
 };
 
 exports.remove = async (req, res) => {
   await Blog.destroy({ where: { id: req.params.id } });
   res.json({ message: "Deleted" });
+};
+
+exports.update = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const body = req.body || {};
+
+    const content =
+      typeof body.content === "string"
+        ? JSON.parse(body.content)
+        : body.content;
+
+    const updates = {
+      title: body.title,
+      slug: body.slug,
+      date: body.date,
+      readTime: body.readTime,
+      shortDesc: body.shortDesc,
+    };
+
+    if (req.file) {
+      updates.image = `blogs/${req.file.filename}`;
+    }
+
+    const [updated] = await Blog.update(updates, { where: { id } });
+
+    if (!updated) {
+      return res.status(404).json({ message: "Blog not updated" });
+    }
+
+    if (Array.isArray(content)) {
+      await BlogBlock.destroy({ where: { blogId: id } });
+
+      await BlogBlock.bulkCreate(
+        content.map((b, index) => ({
+          blogId: id,
+          type: b.type,
+          text: b.text || null,
+          items: b.items || null,
+          order: index,
+        }))
+      );
+    }
+
+    res.json({ message: "Updated" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to update blog" });
+  }
 };

@@ -1,26 +1,37 @@
 module.exports = (sequelize, DataTypes) => {
-  const Client = sequelize.define("Client", {
-    id: {
-      type: DataTypes.STRING, // keep your custom string id
-      primaryKey: true,
+  return sequelize.define(
+    "Client",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      slug: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      logo: {
+        type: DataTypes.STRING,
+      },
+      logoHeight: {
+        type: DataTypes.STRING,
+      },
+      logoWidth: {
+        type: DataTypes.STRING,
+      },
+      shortSummary: {
+        type: DataTypes.TEXT,
+      },
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    logo: {
-      type: DataTypes.STRING,
-    },
-    logoHeight: {
-      type: DataTypes.STRING,
-    },
-    logoWidth: {
-      type: DataTypes.STRING,
-    },
-    shortSummary: {
-      type: DataTypes.TEXT,
-    },
-  });
-
-  return Client;
+    {
+      paranoid: true,
+      timestamps: true,
+    }
+  );
 };

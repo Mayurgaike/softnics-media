@@ -2,71 +2,129 @@ const db = require("../models");
 const { Service, ServiceOffering } = db;
 const makeUrl = require("../utils/fileUrl");
 
-/* GET all services (public) */
+/* GET all services */
 exports.getAll = async (req, res) => {
-  const services = await Service.findAll({
-    include: [{ model: ServiceOffering, as: "offerings" }],
-  });
+  try {
+    const services = await Service.findAll({
+      include: [{ model: ServiceOffering, as: "offerings" }],
+    });
 
-  res.json(
-    services.map((s) => ({
-      ...s.toJSON(),
-      icon: makeUrl(s.icon),
-    }))
-  );
+    res.json(
+      services.map((s) => ({
+        ...s.toJSON(),
+        icon: makeUrl(s.icon),
+      }))
+    );
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch services" });
+  }
 };
 
-/* GET one service by slug */
+/* GET one service */
 exports.getOne = async (req, res) => {
-  const service = await Service.findOne({
-    where: { slug: req.params.slug },
-    include: [{ model: ServiceOffering, as: "offerings" }],
-  });
-  if (!service) return res.status(404).json({ message: "Not found" });
-  res.json(service);
+  try {
+    const service = await Service.findOne({
+      where: { slug: req.params.slug },
+      include: [{ model: ServiceOffering, as: "offerings" }],
+    });
+
+    if (!service) {
+      return res.status(404).json({ message: "Not found" });
+    }
+
+    res.json(service);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch service" });
+  }
 };
 
 /* CREATE service */
 exports.create = async (req, res) => {
-  const { offerings, ...serviceData } = req.body;
+  try {
+    const body = req.body || {};
+    const offerings =
+      typeof body.offerings === "string"
+        ? JSON.parse(body.offerings)
+        : body.offerings;
 
-  const service = await Service.create(serviceData);
+    const service = await Service.create({
+      slug: body.slug,
+      title: body.title,
+      description: body.description,
+      intro: body.intro,
+      closing: body.closing,
+      icon: req.file ? `services/${req.file.filename}` : null,
+    });
 
-  if (offerings?.length) {
-    const rows = offerings.map((text, index) => ({
-      serviceId: service.id,
-      text,
-      order: index,
-    }));
-    await ServiceOffering.bulkCreate(rows);
+    if (Array.isArray(offerings)) {
+      await ServiceOffering.bulkCreate(
+        offerings.map((text, index) => ({
+          serviceId: service.id,
+          text,
+          order: index,
+        }))
+      );
+    }
+
+    res.status(201).json(service);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to create service" });
   }
-
-  res.status(201).json(service);
 };
 
 /* UPDATE service */
 exports.update = async (req, res) => {
-  const { offerings, ...serviceData } = req.body;
+  try {
+    const { id } = req.params;
+    const body = req.body || {};
 
-  await Service.update(serviceData, {
-    where: { id: req.params.id },
-  });
+    const offerings =
+      typeof body.offerings === "string"
+        ? JSON.parse(body.offerings)
+        : body.offerings;
 
-  if (offerings) {
-    await ServiceOffering.destroy({ where: { serviceId: req.params.id } });
-    const rows = offerings.map((text, index) => ({
-      serviceId: req.params.id,
-      text,
-      order: index,
-    }));
-    await ServiceOffering.bulkCreate(rows);
+    const updates = {};
+    if (body.slug !== undefined) updates.slug = body.slug;
+    if (body.title !== undefined) updates.title = body.title;
+    if (body.description !== undefined) updates.description = body.description;
+    if (body.intro !== undefined) updates.intro = body.intro;
+    if (body.closing !== undefined) updates.closing = body.closing;
+
+    if (req.file) {
+      updates.icon = `services/${req.file.filename}`;
+    }
+
+    const [affected] = await Service.update(updates, { where: { id } });
+
+    if (!affected) {
+      return res.status(404).json({ message: "Service not updated" });
+    }
+
+    if (Array.isArray(offerings)) {
+      await ServiceOffering.destroy({ where: { serviceId: id } });
+      await ServiceOffering.bulkCreate(
+        offerings.map((text, index) => ({
+          serviceId: id,
+          text,
+          order: index,
+        }))
+      );
+    } 
+
+    res.json({ message: "Updated" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to update service" });
   }
-
-  res.json({ message: "Updated" });
 };
 
-/* DELETE service */
+/* DELETE service (soft delete via paranoid) */
 exports.remove = async (req, res) => {
-  await Service.destroy({ where: { id: req.params.id } });
-  res.json({ message: "Deleted" });
+  try {
+    await Service.destroy({ where: { id: req.params.id } });
+    res.json({ message: "Deleted" });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to delete service" });
+  }
 };

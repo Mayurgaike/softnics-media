@@ -1,7 +1,7 @@
 module.exports = [
   // 1. The Marathi Beardman Podcast
   {
-    id: 'marathi-beardman-podcast',
+    slug: 'marathi-beardman-podcast',
     name: 'The Marathi Beardman Podcast',
     logo: "clients/Marathibeardman.png",
     logoHeight: "70%",
@@ -22,7 +22,7 @@ module.exports = [
 
   // 2. Aarya Sea Foodz
   {
-    id: 'aarya-sea-foodz',
+    slug: 'aarya-sea-foodz',
     name: 'Aarya Sea Foodz',
     logo: "clients/aarya-foods.png",
     logoHeight: "70%",
@@ -44,7 +44,7 @@ module.exports = [
 
   // 3. 6Shadows Animation & VFX Academy
   {
-    id: '6shadows-animation-vfx-academy',
+    slug: '6shadows-animation-vfx-academy',
     name: '6Shadows Animation & VFX Academy',
     logo: "clients/shadowAcademy.png",
     logoHeight: "70%",
@@ -63,7 +63,7 @@ module.exports = [
 
   // 4. Excellence Academy
   {
-    id: 'excellence-academy',
+    slug: 'excellence-academy',
     name: 'Excellence Academy',
     logo: "clients/excellenceAcademy.jpeg",
     logoHeight: "50%",
@@ -82,7 +82,7 @@ module.exports = [
 
   // 5. Holidays Care
   {
-    id: 'holidays-care',
+    slug: 'holidays-care',
     name: 'Holidays Care',
     logo: "clients/holidayscare.png",
     logoHeight: "90%",
@@ -101,7 +101,7 @@ module.exports = [
 
   // 6. Hotel Vedanta
   {
-    id: 'hotel-vedanta',
+    slug: 'hotel-vedanta',
     name: 'Hotel Vedanta',
     logo: "clients/vedantaHotel.png",
     logoHeight: "75%",
@@ -120,7 +120,7 @@ module.exports = [
 
   // 7. House of Home Loans
   {
-    id: 'house-of-home-loans',
+    slug: 'house-of-home-loans',
     name: 'House Of Home Loans',
     logo: "clients/loanlogo.png",
     logoHeight: "95%",
@@ -139,7 +139,7 @@ module.exports = [
 
   // 8. Maid Dental & Implant Center
   {
-    id: 'maid-dental-implant-center',
+    slug: 'maid-dental-implant-center',
     name: 'Maid Dental & Implant Center',
     logo: "clients/dentist.jpg",
     logoHeight: "50%",
@@ -158,7 +158,7 @@ module.exports = [
 
   // 9. Majesty Mattress
   {
-    id: 'majesty-mattress',
+    slug: 'majesty-mattress',
     name: 'Majesty Mattress',
     logo: "clients/Majestymattress.png",
     logoHeight: "95%",
@@ -177,7 +177,7 @@ module.exports = [
 
   // 10. New SBN Hair Studio
   {
-    id: 'sbn-hair-studio',
+    slug: 'sbn-hair-studio',
     name: 'New SBN Hair Studio',
     logo: "clients/SBNhair.jpg",
     logoHeight: "50%",
@@ -196,7 +196,7 @@ module.exports = [
 
   // 11. Saaj Bella Home
   {
-    id: 'saaj-bella-home',
+    slug: 'saaj-bella-home',
     name: 'Saaj Bella Home',
     logo: "clients/saajBellalogo.png",
     logoHeight: "90%",
@@ -215,7 +215,7 @@ module.exports = [
 
   // 12. Sai Krupa Astro World
   {
-    id: 'sai-krupa-astro-world',
+    slug: 'sai-krupa-astro-world',
     name: 'Sai Krupa Astro World',
     logo: "clients/saikrupaAstrologer.png",
     logoHeight: "90%",
@@ -234,7 +234,7 @@ module.exports = [
 
   // 13. Shagun Tadka
   {
-    id: 'shagun-tadka',
+    slug: 'shagun-tadka',
     name: 'Shagun Tadka',
     logo: "clients/shagunTadka.jpg",
     logoHeight: "75%",
@@ -253,7 +253,7 @@ module.exports = [
 
   // 14. Sonawane Accountancy Classes
   {
-    id: 'sonawane-accountancy-classes',
+    slug: 'sonawane-accountancy-classes',
     name: 'Sonawane Accountancy Classes',
     logo: "clients/sonwaneClass.png",
     logoHeight: "55%",
@@ -272,7 +272,7 @@ module.exports = [
 
   // 15. Unnati Trading Classes
   {
-    id: 'unnati-trading-classes',
+    slug: 'unnati-trading-classes',
     name: 'Unnati Trading Classes',
     logo: "clients/UnnatiLogo.jpg",
     logoHeight: "80%",
@@ -291,7 +291,7 @@ module.exports = [
 
   // 16. Xtreme Fitness Club
   {
-    id: 'xtreme-fitness-club',
+    slug: 'xtreme-fitness-club',
     name: 'Xtreme Fitness Club',
     logo: "clients/xtremeLogo.jpg",
     logoHeight: "95%",
