@@ -19,6 +19,8 @@ db.BlogBlock = require("./blogBlock.model")(sequelize, Sequelize);
 
 db.Team = require("./team.model")(sequelize, Sequelize);
 
+db.Admin = require("./admin.model")(sequelize, Sequelize);
+
 // ASSOCIATIONS
 db.Service.hasMany(db.ServiceOffering, {
   foreignKey: "serviceId",

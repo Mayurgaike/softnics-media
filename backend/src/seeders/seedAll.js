@@ -4,6 +4,7 @@ const seedServices = require("./seedServices");
 const seedTeam = require("./seedTeam");
 const seedClients = require("./seedClients");
 const seedBlogs = require("./seedBlogs");
+const seedAdmin = require("./seedAdmin");
 
 (async () => {
   await db.sequelize.sync({ force: true });
@@ -12,6 +13,7 @@ const seedBlogs = require("./seedBlogs");
   await seedTeam();
   await seedClients();
   await seedBlogs();
+  await seedAdmin();
 
   console.log("✅ ALL DATA SEEDED");
   process.exit();

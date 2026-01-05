@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const c = require("../controllers/team.controller");
+const auth = require("../middleware/auth.middleware");
 
 router.get("/", c.getAll);
-router.post("/", c.create);
-router.put("/:id", c.update);
-router.delete("/:id", c.remove);
+router.post("/", auth, c.create);
+router.put("/:id", auth, c.update);
+router.delete("/:id", auth, c.remove);
 
 module.exports = router;

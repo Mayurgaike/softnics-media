@@ -7,11 +7,18 @@ const serviceRoutes = require("./routes/service.routes");
 const clientRoutes = require("./routes/client.routes");
 const blogRoutes = require("./routes/blog.routes");
 const teamRoutes = require("./routes/team.routes");
-const path = require("path");
+const authRoutes = require("./routes/auth.routes");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://softnicsmedia.com",
+    "https://www.softnicsmedia.com"
+  ],
+  credentials: true
+}));
+
 app.use(express.json());
 
 db.sequelize.sync({ alter: true }).then(() => {
@@ -22,6 +29,7 @@ app.use("/api/services", serviceRoutes);
 app.use("/api/blogs", blogRoutes);
 app.use("/api/clients", clientRoutes);
 app.use("/api/team", teamRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/uploads", express.static("uploads"));
 
 app.get("/", (req, res) => {

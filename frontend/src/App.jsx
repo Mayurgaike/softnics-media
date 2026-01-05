@@ -10,9 +10,11 @@ import BlogPage from "./pages/BlogPage";
 import BlogsPageDetail from "./pages/BlogsPageDetail";
 import PrivacyPolicy from "./pages/Policy";
 import TermsConditions from "./pages/TermsConditions";
+import ProtectedRoute from "./admin/ProtectedRoute";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
@@ -29,7 +31,15 @@ const App = () => {
         <Route path="/terms-conditions" element={<TermsConditions />} />
       </Route>
 
-      <Route path="/admin/*" element={<AdminRoutes />} />
+      <Route
+        path="/admin/*"
+        element={
+          <ProtectedRoute>
+            <AdminRoutes />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 };
