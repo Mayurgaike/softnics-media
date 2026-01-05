@@ -21,9 +21,7 @@ app.use(cors({
 
 app.use(express.json());
 
-db.sequelize.sync({ alter: true }).then(() => {
-  console.log("✅ DB synced");
-});
+db.sequelize.sync();
 
 app.use("/api/services", serviceRoutes);
 app.use("/api/blogs", blogRoutes);
