@@ -9,16 +9,16 @@ const BlogsPageDetails = () => {
   const [blog, setBlog] = useState(null);
 
   useEffect(() => {
-  fetchBlog(slug).then(setBlog);
-}, [slug]);
+    fetchBlog(slug).then(setBlog);
+  }, [slug]);
   useEffect(() => {
-      console.log("blogs state updated:", blog);
-    }, [blog]);
+    console.log("blogs state updated:", blog);
+  }, [blog]);
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: "auto"
+      behavior: "auto",
     });
   }, [slug]);
 
@@ -34,7 +34,6 @@ const BlogsPageDetails = () => {
 
   return (
     <Box sx={{ width: "100%", bgcolor: "#f7faff", py: 5, minHeight: "100vh" }}>
-      
       {/* Breadcrumb */}
       <Box
         sx={{
@@ -166,6 +165,12 @@ const BlogsPageDetails = () => {
             }
 
             if (block.type === "list") {
+              const items = Array.isArray(block.items)
+                ? block.items
+                : typeof block.items === "string"
+                ? JSON.parse(block.items)
+                : [];
+
               return (
                 <motion.ul
                   key={index}
@@ -178,7 +183,7 @@ const BlogsPageDetails = () => {
                     marginTop: "10px",
                   }}
                 >
-                  {block.items.map((item, i) => (
+                  {items.map((item, i) => (
                     <li key={i} style={{ marginBottom: "10px" }}>
                       <Typography
                         sx={{
@@ -194,7 +199,6 @@ const BlogsPageDetails = () => {
                 </motion.ul>
               );
             }
-
             return null;
           })}
         </Box>

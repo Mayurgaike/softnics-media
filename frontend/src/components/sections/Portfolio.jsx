@@ -10,14 +10,12 @@ import {
   BarChart,
 } from "@mui/icons-material";
 
-
 import GroupsIcon from "@mui/icons-material/Groups";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
-
 
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import SearchIcon from "@mui/icons-material/Search";
@@ -26,11 +24,14 @@ import ComputerIcon from "@mui/icons-material/Computer";
 import BrushIcon from "@mui/icons-material/Brush";
 import SettingsIcon from "@mui/icons-material/Settings";
 
+import bgImage from "../../assets/results/Bg.png";
+import avatar1 from "../../assets/results/avatar1.png";
+import avatar2 from "../../assets/results/avatar2.png";
+import avatar3 from "../../assets/results/avatar3.png";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 
 const useCounter = (target, duration = 1500) => {
   const [count, setCount] = useState(0);
@@ -57,7 +58,6 @@ const useCounter = (target, duration = 1500) => {
   return count;
 };
 
-
 const Portfolio = () => {
   const clients = useCounter(200);
   const leads = useCounter(100000);
@@ -69,8 +69,6 @@ const Portfolio = () => {
 
   return (
     <Box sx={{ width: "100%", bgcolor: "#f8faff" }}>
-
-     
       <Box
         sx={{
           textAlign: "center",
@@ -100,7 +98,10 @@ const Portfolio = () => {
           {[
             { label: "Clients Served", value: clients + "+" },
             { label: "Qualified Leads", value: leads.toLocaleString() + "+" },
-            { label: "Ad Spend Managed", value: "₹" + adSpend.toLocaleString() },
+            {
+              label: "Ad Spend Managed",
+              value: "₹" + adSpend.toLocaleString(),
+            },
             { label: "Monthly Reach", value: reach.toLocaleString() + "+" },
             { label: "Average ROAS", value: roas + "X" },
             { label: "Client Retention", value: retention + "%" },
@@ -142,7 +143,6 @@ const Portfolio = () => {
         </Grid>
       </Box>
 
-    
       <Box sx={{ width: "100%", py: 10, px: 2, background: "#f5f9ff" }}>
         <Box sx={{ maxWidth: "1500px", mx: "auto" }}>
           <Typography
@@ -432,7 +432,6 @@ const Portfolio = () => {
         </Box>
       </Box>
 
-      
       <Box
         sx={{
           py: 10,
@@ -469,7 +468,11 @@ const Portfolio = () => {
             },
             {
               title: "E-commerce Brand Scaling",
-              list: ["5X ROAS", "+210% Revenue Increase", "₹3,50,000+ Ad Spend"],
+              list: [
+                "5X ROAS",
+                "+210% Revenue Increase",
+                "₹3,50,000+ Ad Spend",
+              ],
               icon: <ShoppingCart sx={{ fontSize: 40, color: "#0066ff" }} />,
               bg: "linear-gradient(135deg,#e3faff,#ffffff)",
             },
@@ -551,7 +554,6 @@ const Portfolio = () => {
         </Box>
       </Box>
 
-     
       <Box sx={{ py: 10, px: 3, background: "#f3f7ff" }}>
         <Typography
           variant="h4"
@@ -637,176 +639,174 @@ const Portfolio = () => {
         </Box>
       </Box>
 
-<Box sx={{ mt: 10, textAlign: "center" }}>
-  {/* SIMPLE SECTION TITLE */}
-  <Typography
-    variant="h4"
-    fontWeight={800}
-    textAlign="center"
-    mb={6}
-    sx={{
-      color: "#0a2a6b",
-      fontFamily: "Georgia, serif",
-      letterSpacing: "0.5px",
-    }}
-  >
-    <span style={{ color: "#0066ff", fontSize: "34px" }}>“</span>
-    What Our Clients Say
-    <span style={{ color: "#0066ff", fontSize: "34px" }}>”</span>
-  </Typography>
-
-</Box>
-
-<Box
-  sx={{
-    position: "relative",
-    height: { xs: "420px", md: "px" },
-    overflow: "hidden",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    mt: 2,
-  }}
->
-  
-  <Box
-    sx={{
-      position: "absolute",
-      inset: 0,
-      backgroundImage: `url("/src/assets/results/Bg.png")`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      filter: "brightness(0.55) blur(1px)",
-    }}
-  />
-
-  
-  <Box
-    sx={{
-      position: "relative",
-      zIndex: 2,
-      width: "100%",
-      maxWidth: "700px",
-      textAlign: "center",
-      px: 2,
-    }}
-  >
-    <Slider
-      dots={true}
-      infinite={true}
-      autoplay={true}
-      arrows={false}
-      speed={600}
-      autoplaySpeed={3500}
-      pauseOnHover={false}
-    >
-      
-      <Box sx={{ color: "white" }}>
-        <img
-          src="/src/assets/results/avatar1.png"
-          alt="avatar1"
-          style={{
-            width: "90px",
-            height: "90px",
-            borderRadius: "50%",
-            border: "3px solid white",
-            objectFit: "cover",
-            margin: "0 auto",
-          }}
-        />
-
-        <Typography variant="h6" sx={{ mt: 2, fontWeight: 700 }}>
-          Alex Johnson
-        </Typography>
-        <Typography sx={{ opacity: 0.8 }}>E-Commerce Brand Owner</Typography>
-
+      <Box sx={{ mt: 10, textAlign: "center" }}>
+        {/* SIMPLE SECTION TITLE */}
         <Typography
+          variant="h4"
+          fontWeight={800}
+          textAlign="center"
+          mb={6}
           sx={{
-            mt: 2,
-            fontSize: { xs: "17px", md: "20px" },
-            fontWeight: 500,
-            color: "white",
-            lineHeight: 1.6,
-            fontStyle: "italic",
+            color: "#0a2a6b",
+            fontFamily: "Georgia, serif",
+            letterSpacing: "0.5px",
           }}
         >
-          “We scaled our business with consistent leads and a strong ROAS. One of the best agencies we’ve worked with.”
+          <span style={{ color: "#0066ff", fontSize: "34px" }}>“</span>
+          What Our Clients Say
+          <span style={{ color: "#0066ff", fontSize: "34px" }}>”</span>
         </Typography>
       </Box>
 
-      
-      <Box sx={{ color: "white" }}>
-        <img
-          src="/src/assets/results/avatar2.png"
-          alt="avatar2"
-          style={{
-            width: "90px",
-            height: "90px",
-            borderRadius: "50%",
-            border: "3px solid white",
-            objectFit: "cover",
-            margin: "0 auto",
+      <Box
+        sx={{
+          position: "relative",
+          height: { xs: "420px", md: "px" },
+          overflow: "hidden",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          mt: 2,
+        }}
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `url(${bgImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            filter: "brightness(0.55) blur(1px)",
           }}
         />
 
-        <Typography variant="h6" sx={{ mt: 2, fontWeight: 700 }}>
-          Rohan Mehta
-        </Typography>
-        <Typography sx={{ opacity: 0.8 }}>Real Estate Developer </Typography>
-
-        <Typography
+        <Box
           sx={{
-            mt: 2,
-            fontSize: { xs: "17px", md: "20px" },
-            fontWeight: 500,
-            color: "white",
-            lineHeight: 1.6,
-            fontStyle: "italic",
+            position: "relative",
+            zIndex: 2,
+            width: "100%",
+            maxWidth: "700px",
+            textAlign: "center",
+            px: 2,
           }}
         >
-          “Professional, responsive, and performance-focused. Our ad results improved within 30 days.”
-        </Typography>
+          <Slider
+            dots={true}
+            infinite={true}
+            autoplay={true}
+            arrows={false}
+            speed={600}
+            autoplaySpeed={3500}
+            pauseOnHover={false}
+          >
+            <Box sx={{ color: "white" }}>
+              <img
+                src={avatar1}
+                alt="avatar1"
+                style={{
+                  width: "90px",
+                  height: "90px",
+                  borderRadius: "50%",
+                  border: "3px solid white",
+                  objectFit: "cover",
+                  margin: "0 auto",
+                }}
+              />
+
+              <Typography variant="h6" sx={{ mt: 2, fontWeight: 700 }}>
+                Alex Johnson
+              </Typography>
+              <Typography sx={{ opacity: 0.8 }}>
+                E-Commerce Brand Owner
+              </Typography>
+
+              <Typography
+                sx={{
+                  mt: 2,
+                  fontSize: { xs: "17px", md: "20px" },
+                  fontWeight: 500,
+                  color: "white",
+                  lineHeight: 1.6,
+                  fontStyle: "italic",
+                }}
+              >
+                “We scaled our business with consistent leads and a strong ROAS.
+                One of the best agencies we’ve worked with.”
+              </Typography>
+            </Box>
+
+            <Box sx={{ color: "white" }}>
+              <img
+                src={avatar2}
+                alt="avatar2"
+                style={{
+                  width: "90px",
+                  height: "90px",
+                  borderRadius: "50%",
+                  border: "3px solid white",
+                  objectFit: "cover",
+                  margin: "0 auto",
+                }}
+              />
+
+              <Typography variant="h6" sx={{ mt: 2, fontWeight: 700 }}>
+                Rohan Mehta
+              </Typography>
+              <Typography sx={{ opacity: 0.8 }}>
+                Real Estate Developer{" "}
+              </Typography>
+
+              <Typography
+                sx={{
+                  mt: 2,
+                  fontSize: { xs: "17px", md: "20px" },
+                  fontWeight: 500,
+                  color: "white",
+                  lineHeight: 1.6,
+                  fontStyle: "italic",
+                }}
+              >
+                “Professional, responsive, and performance-focused. Our ad
+                results improved within 30 days.”
+              </Typography>
+            </Box>
+
+            <Box sx={{ color: "white" }}>
+              <img
+                src={avatar3}
+                alt="avatar3"
+                style={{
+                  width: "90px",
+                  height: "90px",
+                  borderRadius: "50%",
+                  border: "3px solid white",
+                  objectFit: "cover",
+                  margin: "0 auto",
+                }}
+              />
+
+              <Typography variant="h6" sx={{ mt: 2, fontWeight: 700 }}>
+                Sarah Williams
+              </Typography>
+              <Typography sx={{ opacity: 0.8 }}>Coach & Consultant</Typography>
+
+              <Typography
+                sx={{
+                  mt: 2,
+                  fontSize: { xs: "17px", md: "20px" },
+                  fontWeight: 500,
+                  color: "white",
+                  lineHeight: 1.6,
+                  fontStyle: "italic",
+                }}
+              >
+                “They don’t just run ads — they build systems that converts!”
+              </Typography>
+            </Box>
+          </Slider>
+        </Box>
       </Box>
 
-      
-      <Box sx={{ color: "white" }}>
-        <img
-          src="/src/assets/results/avatar3.png"
-          alt="avatar3"
-          style={{
-            width: "90px",
-            height: "90px",
-            borderRadius: "50%",
-            border: "3px solid white",
-            objectFit: "cover",
-            margin: "0 auto",
-          }}
-        />
-
-        <Typography variant="h6" sx={{ mt: 2, fontWeight: 700 }}>
-          Sarah Williams
-        </Typography>
-        <Typography sx={{ opacity: 0.8 }}>Coach & Consultant</Typography>
-
-        <Typography
-          sx={{
-            mt: 2,
-            fontSize: { xs: "17px", md: "20px" },
-            fontWeight: 500,
-            color: "white",
-            lineHeight: 1.6,
-            fontStyle: "italic",
-          }}
-        >
-          “They don’t just run ads — they build systems that converts!”
-        </Typography>
-      </Box>
-    </Slider>
-  </Box>
-</Box>
-
-
-      
       <Box sx={{ py: 8, px: 3, background: "#eef4ff" }}>
         <Typography
           variant="h4"
@@ -862,9 +862,7 @@ const Portfolio = () => {
               },
               {
                 name: "ClickFunnels / WordPress",
-                icon: (
-                  <ComputerIcon sx={{ fontSize: 26, color: "#0066ff" }} />
-                ),
+                icon: <ComputerIcon sx={{ fontSize: 26, color: "#0066ff" }} />,
               },
               {
                 name: "Canva / Adobe Suite",

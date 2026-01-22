@@ -102,7 +102,7 @@ const ContactSection = () => {
             <Stack direction="row" spacing={2}>
               <LocationOnIcon color="primary" />
               <Typography variant="body1">
-                6th Floor, Roongta Business Hub, Nashik
+                6th Floor, Roongta Shopping Hub, Nashik
               </Typography>
             </Stack>
           </Stack>

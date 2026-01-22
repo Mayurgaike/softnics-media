@@ -216,7 +216,7 @@ const Footer = () => {
                     variant="body2"
                     sx={{ color: "rgba(255,255,255,0.7)" }}
                   >
-                    6th Floor, Roongta Business Hub
+                    6th Floor, Roongta Shopping Hub
                   </Typography>
                   <Typography
                     variant="body2"

@@ -4,34 +4,16 @@ import Slider from "react-slick";
 import hero1 from "../../assets/hero/hero1.jpg";
 import hero2 from "../../assets/hero/hero2.jpg";
 import hero3 from "../../assets/hero/hero3.jpg";
-import hero4 from "../../assets/hero/hero4.jpg";
-import hero5 from "../../assets/hero/hero5.jpg";
 
 const slides = [
   {
     image: hero1,
-    title: "Redefining Digital Marketing Since 2020",
-    subtitle: "Strategic, Creative & Technology-Driven Solutions.",
   },
   {
     image: hero2,
-    title: "Grow Your Brand With Data-Driven Digital Marketing",
-    subtitle: "Social Media • SEO • Performance Ads • Lead Generation",
   },
   {
     image: hero3,
-    title: "Capture, Create & Inspire With Professional Visual Content",
-    subtitle: "Photoshoots • Videography • Reels • Corporate Films",
-  },
-  {
-    image: hero4,
-    title: "Your Trusted Partner For Sustainable Business Growth",
-    subtitle: "Build Connections. Drive Results. Scale With Confidence.",
-  },
-  {
-    image: hero5,
-    title: "End-to-End Creative & Digital Solutions Under One Roof",
-    subtitle: "Design • Marketing • Production • Web • App Development",
   },
 ];
 
