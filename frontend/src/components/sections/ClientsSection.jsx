@@ -133,10 +133,10 @@ const ClientsSection = () => {
                 <Box
                   component="img"
                   src={selectedClient.logo}
-                  alt={selectedClient.name}
+                  alt={`${selectedClient.name} brand logo`}
                   sx={{ height: 50, objectFit: "contain" }}
                 />
-                <Typography variant="h6">{selectedClient.name}</Typography>
+                <Typography variant="h6" component="h3">{selectedClient.name}</Typography>
               </Box>
 
               <IconButton

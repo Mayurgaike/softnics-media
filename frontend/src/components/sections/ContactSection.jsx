@@ -82,7 +82,7 @@ const ContactSection = () => {
       >
         
         <Box sx={{ flex: 1 }}>
-          <Typography variant="h5" sx={{ mb: 2, fontWeight: 700 }}>
+          <Typography variant="h5" component="h3" sx={{ mb: 2, fontWeight: 700 }}>
             Get in Touch
           </Typography>
 
@@ -107,7 +107,7 @@ const ContactSection = () => {
             </Stack>
           </Stack>
 
-          <Typography variant="h6" sx={{ fontWeight: 600, mb: 1 }}>
+          <Typography variant="h6" component="h3" sx={{ fontWeight: 600, mb: 1 }}>
             Follow Us
           </Typography>
 
@@ -149,7 +149,7 @@ const ContactSection = () => {
             mx: "auto",
           }}
         >
-          <Typography variant="h5" sx={{ fontWeight: 700, mb: 1 }}>
+          <Typography variant="h5" component="h3" sx={{ fontWeight: 700, mb: 1 }}>
             Let's Talk
           </Typography>
 

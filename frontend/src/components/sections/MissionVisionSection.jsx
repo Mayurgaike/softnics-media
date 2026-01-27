@@ -107,7 +107,7 @@ const MissionVisionSection = () => {
             },
           }}
         >
-          <Typography variant="h6" fontWeight={700} mb={1}>
+          <Typography variant="h6" component="h3" fontWeight={700} mb={1}>
             Our Mission
           </Typography>
           <Typography variant="body2" color="text.secondary" lineHeight={1.7}>
@@ -141,7 +141,7 @@ const MissionVisionSection = () => {
             },
           }}
         >
-          <Typography variant="h6" fontWeight={700} mb={1}>
+          <Typography variant="h6" component="h3" fontWeight={700} mb={1}>
             Our Vision
           </Typography>
           <Typography variant="body2" color="text.secondary" lineHeight={1.7}>
@@ -153,7 +153,7 @@ const MissionVisionSection = () => {
       </Box>
 
       {/* ---------------- WHY HIRE US ---------------- */}
-      <Typography variant="h4" fontWeight={800} textAlign="center" mb={2}>
+      <Typography variant="h4" component="h3" fontWeight={800} textAlign="center" mb={2}>
         Why Hire Us
       </Typography>
 
@@ -257,7 +257,7 @@ const MissionVisionSection = () => {
             <Box sx={{ fontSize: 34, color: "#0052FF" }}>
               {item.icon}
             </Box>
-            <Typography fontWeight={700} fontSize="0.95rem">
+            <Typography component="h4" fontWeight={700} fontSize="0.95rem">
               {item.label}
             </Typography>
           </Box>

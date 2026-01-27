@@ -112,6 +112,7 @@ const ServiceDetailPage = () => {
         <Box sx={{ textAlign: "center", mb: 6 }}>
           <Typography
             variant="h3"
+            component="h1"
             sx={{
               fontWeight: 800,
               mb: 1,
@@ -164,6 +165,7 @@ const ServiceDetailPage = () => {
 
             <Typography
               variant="h6"
+              component="h2"
               sx={{
                 fontWeight: 700,
                 mb: 1.5,
@@ -187,6 +189,7 @@ const ServiceDetailPage = () => {
 
             <Typography
               variant="subtitle1"
+              component="h3"
               sx={{
                 fontWeight: 700,
                 mb: 1,

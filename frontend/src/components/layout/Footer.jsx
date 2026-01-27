@@ -58,7 +58,7 @@ const Footer = () => {
               >
                 SM
               </Box>
-              <Typography variant="h6" sx={{ fontWeight: 600 }}>
+              <Typography variant="h6" component="h3" sx={{ fontWeight: 600 }}>
                 Softnics Media
               </Typography>
             </Box>
@@ -143,6 +143,7 @@ const Footer = () => {
           <Grid item xs={12} sm={6} md={3}>
             <Typography
               variant="h6"
+              component="h3"
               sx={{ fontWeight: 600, mb: 2, fontSize: 18 }}
             >
               Our Services
@@ -164,6 +165,7 @@ const Footer = () => {
           <Grid item xs={12} md={4}>
             <Typography
               variant="h6"
+              component="h3"
               sx={{ fontWeight: 600, mb: 2, fontSize: 18 }}
             >
               Contact Us
@@ -219,6 +221,7 @@ const Footer = () => {
                     6th Floor, Roongta Shopping Hub
                   </Typography>
                   <Typography
+                    component="address"
                     variant="body2"
                     sx={{ color: "rgba(255,255,255,0.7)" }}
                   >

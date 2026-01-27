@@ -1,17 +1,35 @@
-import React from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import React from "react";
+import { Box, Container, Typography } from "@mui/material";
 
-const SectionWrapper = ({ id, title, subtitle, children, bg = 'transparent' }) => {
+const SectionWrapper = ({
+  id,
+  title,
+  subtitle,
+  children,
+  bg = "transparent",
+}) => {
   return (
-    <Box id={id} sx={{ py: { xs: 6, md: 8 }, bgcolor: bg  }}>
-      <Container sx={{ minWidth:'80%' }}>
+    <Box id={id} sx={{ py: { xs: 6, md: 8 }, bgcolor: bg }}>
+      <Container sx={{ minWidth: "80%" }}>
         {title && (
-          <Typography variant="h3" align="center" sx={{ fontWeight: 700, mb: 1 }}>
+          <Typography
+            variant="h3"
+            component="h2"
+            align="center"
+            sx={{ fontWeight: 700, mb: 1 }}
+          >
             {title}
           </Typography>
         )}
+
         {subtitle && (
-          <Typography variant="body1" align="center" color="text.secondary" sx={{ mb: 8 }}>
+          <Typography
+            variant="body1"
+            component="p"
+            align="center"
+            color="text.secondary"
+            sx={{ mb: 8 }}
+          >
             {subtitle}
           </Typography>
         )}

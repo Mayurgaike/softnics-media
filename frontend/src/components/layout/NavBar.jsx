@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import logo from "../../assets/logo.png";
 
@@ -127,21 +127,22 @@ const NavBar = () => {
             }}
           >
             {/* LOGO */}
-            <Box
-              component={motion.img}
-              src={logo}
-              alt="Softnics Media"
-              initial={{ scale: 0.85, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.4 }}
-              sx={{
-                height: 80,
-                cursor: "pointer",
-                objectFit: "contain",
-              }}
-              onClick={() => handleScrollNav("hero")}
-            />
-
+            <Box component={Link} to="/" sx={{ display: "inline-flex" }}>
+              <Box
+                component={motion.img}
+                src={logo}
+                alt="Softnics Media digital marketing agency logo"
+                initial={{ scale: 0.85, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                sx={{
+                  height: 80,
+                  cursor: "pointer",
+                  objectFit: "contain",
+                }}
+                onClick={() => handleScrollNav("hero")}
+              />
+            </Box>
             {/* DESKTOP MENU */}
             <Box
               sx={{

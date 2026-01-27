@@ -70,7 +70,7 @@ const ServicesSection = () => {
             <Box
               component="img"
               src={service.icon}
-              alt={service.title}
+              alt={`${service.title} service icon`}
               sx={{
                 width: 40,
                 height: 40,
@@ -82,6 +82,7 @@ const ServicesSection = () => {
             {/* TITLE */}
             <Typography
               variant="h6"
+              component="h3"
               sx={{
                 fontWeight: 700,
                 color: "text.primary",

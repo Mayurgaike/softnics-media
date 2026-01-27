@@ -74,38 +74,6 @@ const HeroSlider = () => {
                 maxWidth: "800px",
               }}
             >
-              <Typography
-                variant="h2"
-                sx={{
-                  color: "white",
-                  fontWeight: 700,
-                  mb: 1,
-                  lineHeight: 1.2,
-                  fontSize: {
-                    xs: "1.6rem",
-                    sm: "2.2rem",
-                    md: "3rem",
-                  }, // ⭐ Responsive text size
-                }}
-              >
-                {slide.title}
-              </Typography>
-
-              <Typography
-                variant="h6"
-                sx={{
-                  color: "white",
-                  opacity: 0.85,
-                  lineHeight: 1.4,
-                  fontSize: {
-                    xs: "0.9rem",
-                    sm: "1.1rem",
-                    md: "1.3rem",
-                  },
-                }}
-              >
-                {slide.subtitle}
-              </Typography>
             </Box>
           </Box>
         ))}

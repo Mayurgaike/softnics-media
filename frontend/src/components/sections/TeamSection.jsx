@@ -91,7 +91,7 @@ const TeamSection = () => {
               {getInitials(owner.name)}
             </Box>
 
-            <Typography variant="h6" fontWeight={800}>
+            <Typography variant="h6" component="h3" fontWeight={800}>
               {owner.name}
             </Typography>
 
@@ -149,7 +149,7 @@ const TeamSection = () => {
                 {getInitials(member.name)}
               </Box>
 
-              <Typography variant="h6" fontWeight={700}>
+              <Typography variant="h6" component="h4" fontWeight={700}>
                 {member.name}
               </Typography>
 
