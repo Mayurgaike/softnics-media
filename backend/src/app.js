@@ -22,9 +22,15 @@ app.use(cors({
 
 app.use(express.json());
 
-db.sequelize.sync({ alter: true }).then(() => {
-  console.log("✅ DB synced");
-});
+if (process.env.NODE_ENV === "development") {
+  db.sequelize.sync({ alter: true }).then(() => {
+    console.log("✅ DB synced (dev)");
+  });
+} else {
+  db.sequelize.sync().then(() => {
+    console.log("✅ DB synced");
+  });
+}
 
 app.use("/api/services", serviceRoutes);
 app.use("/api/blogs", blogRoutes);
