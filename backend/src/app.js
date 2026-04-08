@@ -23,15 +23,10 @@ app.use(cors({
 
 app.use(express.json());
 
-if (process.env.NODE_ENV === "development") {
-  db.sequelize.sync({ alter: true })
-    .then(() => console.log("✅ DB synced (dev)"))
-    .catch(err => console.error("❌ DB sync failed:", err)); 
-} else {
-  db.sequelize.sync()
-    .then(() => console.log("✅ DB synced"))
-    .catch(err => console.error("❌ DB sync failed:", err));
-}
+// DB connection check only — schema managed manually
+sequelize.authenticate()
+  .then(() => console.log("✅ Database connected"))
+  .catch(err => console.error("❌ DB connection failed:", err));
 
 app.use("/api/services", serviceRoutes);
 app.use("/api/blogs", blogRoutes);
@@ -43,9 +38,6 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.get("/", (req, res) => {
   res.send("Softnics API is running 🚀");
 });
-sequelize.authenticate()
-  .then(() => console.log("✅ Database connected"))
-  .catch(err => console.error("❌ DB connection failed:", err));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
