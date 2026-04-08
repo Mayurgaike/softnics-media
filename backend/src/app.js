@@ -8,6 +8,7 @@ const clientRoutes = require("./routes/client.routes");
 const blogRoutes = require("./routes/blog.routes");
 const teamRoutes = require("./routes/team.routes");
 const authRoutes = require("./routes/auth.routes");
+const path = require("path");
 
 const app = express();
 
@@ -37,7 +38,7 @@ app.use("/api/blogs", blogRoutes);
 app.use("/api/clients", clientRoutes);
 app.use("/api/team", teamRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.get("/", (req, res) => {
   res.send("Softnics API is running 🚀");
