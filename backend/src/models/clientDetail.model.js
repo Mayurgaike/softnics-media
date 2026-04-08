@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       paranoid: true,
       timestamps: true,
+      tableName: "clientdetails"
     }
   );
 };
