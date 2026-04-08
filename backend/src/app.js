@@ -24,13 +24,13 @@ app.use(cors({
 app.use(express.json());
 
 if (process.env.NODE_ENV === "development") {
-  db.sequelize.sync({ alter: true }).then(() => {
-    console.log("✅ DB synced (dev)");
-  });
+  db.sequelize.sync({ alter: true })
+    .then(() => console.log("✅ DB synced (dev)"))
+    .catch(err => console.error("❌ DB sync failed:", err)); 
 } else {
-  db.sequelize.sync().then(() => {
-    console.log("✅ DB synced");
-  });
+  db.sequelize.sync()
+    .then(() => console.log("✅ DB synced"))
+    .catch(err => console.error("❌ DB sync failed:", err));
 }
 
 app.use("/api/services", serviceRoutes);
