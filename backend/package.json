@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "preinstall": "npm config set audit false",
+    "postinstall": "npm audit fix --force || true"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +21,10 @@
     "multer": "^2.0.2",
     "mysql2": "^3.16.0",
     "sequelize": "^6.37.7"
+  },
+  "overrides": {
+    "glob-parent": "^6.0.2",
+    "minimist": "^1.2.8",
+    "debug": "^4.3.4"
   }
 }
