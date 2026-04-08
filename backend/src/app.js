@@ -33,7 +33,7 @@ app.use("/api/blogs", blogRoutes);
 app.use("/api/clients", clientRoutes);
 app.use("/api/team", teamRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 app.get("/", (req, res) => {
   res.send("Softnics API is running 🚀");
