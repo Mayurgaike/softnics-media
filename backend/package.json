@@ -23,8 +23,6 @@
     "sequelize": "^6.37.7"
   },
   "overrides": {
-    "glob-parent": "^6.0.2",
-    "minimist": "^1.2.8",
-    "debug": "^4.3.4"
+    "dottie": "2.0.6"
   }
 }
