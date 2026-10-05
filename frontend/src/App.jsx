@@ -10,6 +10,7 @@ import BlogPage from "./pages/BlogPage";
 import BlogsPageDetail from "./pages/BlogsPageDetail";
 import PrivacyPolicy from "./pages/Policy";
 import TermsConditions from "./pages/TermsConditions";
+import CommunityPage from "./pages/CommunityPage";
 import ProtectedRoute from "./admin/ProtectedRoute";
 
 import "slick-carousel/slick/slick.css";
@@ -29,6 +30,7 @@ const App = () => {
 
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-conditions" element={<TermsConditions />} />
+        <Route path="/community" element={<CommunityPage />} />
       </Route>
 
       <Route

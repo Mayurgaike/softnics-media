@@ -16,10 +16,11 @@ const HomePage = () => {
     <>
       <SEO
         title="Best Digital Marketing Agency in Nashik | Softnics Media"
-        description="Softnics Media is a leading digital marketing agency in Nashik offering SEO, social media marketing, branding, web development and performance marketing."
+        description="Digital marketing agency in Nashik offering SEO, social media marketing, Google Ads & website development to grow your business online."
         keywords="digital marketing agency in Nashik, SEO services Nashik, social media marketing Nashik"
         canonical="https://www.softnicsmedia.com/"
       />
+
       <Box>
         <HeroSlider />
 

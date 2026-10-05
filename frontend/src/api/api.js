@@ -16,8 +16,7 @@ const authFetch = (url, options = {}) =>
   });
 
 // Public API's
-export const fetchClients = () =>
-  fetch(`${API}/clients`).then((r) => r.json());
+export const fetchClients = () => fetch(`${API}/clients`).then((r) => r.json());
 
 export const fetchServices = () =>
   fetch(`${API}/services`).then((r) => r.json());
@@ -25,14 +24,12 @@ export const fetchServices = () =>
 export const fetchService = (slug) =>
   fetch(`${API}/services/${slug}`).then((r) => r.json());
 
-export const fetchBlogs = () =>
-  fetch(`${API}/blogs`).then((r) => r.json());
+export const fetchBlogs = () => fetch(`${API}/blogs`).then((r) => r.json());
 
 export const fetchBlog = (slug) =>
   fetch(`${API}/blogs/${slug}`).then((r) => r.json());
 
-export const fetchTeam = () =>
-  fetch(`${API}/team`).then((r) => r.json());
+export const fetchTeam = () => fetch(`${API}/team`).then((r) => r.json());
 
 // Protected API's
 
@@ -106,7 +103,7 @@ export const deleteClient = (id) =>
     method: "DELETE",
   });
 
-// Login 
+// Login
 
 export const login = (data) =>
   fetch(`${API}/auth/login`, {

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Slider from "react-slick";
 
 import hero1 from "../../assets/hero/hero1.jpg";
@@ -6,15 +6,9 @@ import hero2 from "../../assets/hero/hero2.jpg";
 import hero3 from "../../assets/hero/hero3.jpg";
 
 const slides = [
-  {
-    image: hero1,
-  },
-  {
-    image: hero2,
-  },
-  {
-    image: hero3,
-  },
+  { image: hero1 },
+  { image: hero2 },
+  { image: hero3 },
 ];
 
 const HeroSlider = () => {
@@ -34,8 +28,6 @@ const HeroSlider = () => {
       id="hero"
       sx={{
         position: "relative",
-        height: { xs: "70vh", sm: "80vh", md: "100vh" }, // ⭐ Responsive height
-        minHeight: { xs: 350, sm: 450, md: 500 },
         overflow: "hidden",
       }}
     >
@@ -45,36 +37,38 @@ const HeroSlider = () => {
             key={idx}
             sx={{
               position: "relative",
-              height: { xs: "70vh", sm: "80vh", md: "100vh" },
-              minHeight: { xs: 350, sm: 450, md: 500 },
+              height: { xs: "auto", md: "100vh" },
+              minHeight: { md: 500 },
             }}
           >
             <Box
               component="img"
               src={slide.image}
-              alt={slide.title}
+              alt="Digital Marketing Agency in Nashik – Softnics Media"
               sx={{
                 width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: { xs: "center top", md: "center" }, 
-                filter: "brightness(0.55)",
+                height: { xs: "auto", md: "100%" },
+                maxHeight: { xs: "70vh", md: "100%" },
+
+                objectFit: { xs: "contain", md: "cover" },
+                objectPosition: "center",
+
+                display: "block",
               }}
             />
 
-            {/* TEXT AREA */}
+            {/* TEXT AREA (desktop only hero style) */}
             <Box
               sx={{
-                position: "absolute",
-                inset: 0,
+                position: { md: "absolute" },
+                inset: { md: 0 },
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                px: { xs: 2, sm: 3, md: 6 },
+                px: { xs: 2, sm: 3, md: 6 },  
                 maxWidth: "800px",
               }}
-            >
-            </Box>
+            />
           </Box>
         ))}
       </Slider>

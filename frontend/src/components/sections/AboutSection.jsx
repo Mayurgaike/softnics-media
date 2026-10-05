@@ -39,9 +39,8 @@ const AboutSection = () => {
               width: "100%",
               maxWidth: 520,
               borderRadius: 1,
-              objectFit: "cover",
+              objectFit: "contain",
               boxShadow: 4,
-              aspectRatio: 16 / 13,
             }}
           />
         </Box>
@@ -56,7 +55,7 @@ const AboutSection = () => {
               mb: 2,
             }}
           >
-            Best Digital Marketing & Social Media Agency in Nashik
+            Digital Marketing Agency in Nashik – Grow Your Business Online
           </Typography>
           <Typography
             variant="h4"

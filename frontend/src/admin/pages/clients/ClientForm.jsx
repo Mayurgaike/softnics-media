@@ -35,11 +35,10 @@ const ClientForm = ({ initialData, onSubmit, onCancel }) => {
         logoHeight: initialData.logoHeight,
         logoWidth: initialData.logoWidth,
         details: initialData.details?.map((d) => d.text) || [""],
-        links:
-          initialData.links?.map((l) => ({
-            platform: l.platform,
-            url: l.url,
-          })) || [{ platform: "", url: "" }],
+        links: initialData.links?.map((l) => ({
+          platform: l.platform,
+          url: l.url,
+        })) || [{ platform: "", url: "" }],
       });
 
       setPreview(initialData.logo || null);
@@ -172,7 +171,12 @@ const ClientForm = ({ initialData, onSubmit, onCancel }) => {
 
         <Button variant="outlined" component="label">
           Upload Logo
-          <input hidden type="file" accept="image/*" onChange={handleLogoChange} />
+          <input
+            hidden
+            type="file"
+            accept="image/*"
+            onChange={handleLogoChange}
+          />
         </Button>
 
         <Divider />
