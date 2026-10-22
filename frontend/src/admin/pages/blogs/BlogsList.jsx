@@ -27,6 +27,7 @@ import AddIcon from "@mui/icons-material/Add";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import PublishIcon from "@mui/icons-material/Publish";
 import UnpublishedIcon from "@mui/icons-material/Unpublished";
+import ArticleIcon from "@mui/icons-material/Article";
 
 import {
   fetchAdminBlogs,
@@ -214,6 +215,12 @@ const BlogsList = () => {
                         component="img"
                         src={b.image}
                         alt={b.title}
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                          if (e.currentTarget.nextElementSibling) {
+                            e.currentTarget.nextElementSibling.style.display = "flex";
+                          }
+                        }}
                         sx={{
                           width: 56,
                           height: 40,
@@ -222,16 +229,20 @@ const BlogsList = () => {
                           border: "1px solid #e2e8f0",
                         }}
                       />
-                    ) : (
-                      <Box
-                        sx={{
-                          width: 56,
-                          height: 40,
-                          bgcolor: "#e2e8f0",
-                          borderRadius: 1,
-                        }}
-                      />
-                    )}
+                    ) : null}
+                    <Box
+                      sx={{
+                        width: 56,
+                        height: 40,
+                        bgcolor: "#e2e8f0",
+                        borderRadius: 1,
+                        display: b.image ? "none" : "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <ArticleIcon sx={{ color: "#94a3b8", fontSize: 20 }} />
+                    </Box>
                   </TableCell>
 
                   <TableCell>

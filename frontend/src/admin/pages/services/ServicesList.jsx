@@ -27,6 +27,7 @@ import AddIcon from "@mui/icons-material/Add";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import PublishIcon from "@mui/icons-material/Publish";
 import UnpublishedIcon from "@mui/icons-material/Unpublished";
+import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
 
 import {
   fetchAdminServices,
@@ -225,6 +226,12 @@ const ServicesList = () => {
                         component="img"
                         src={s.image || s.icon}
                         alt={s.title}
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                          if (e.currentTarget.nextElementSibling) {
+                            e.currentTarget.nextElementSibling.style.display = "flex";
+                          }
+                        }}
                         sx={{
                           width: 44,
                           height: 44,
@@ -234,16 +241,20 @@ const ServicesList = () => {
                           p: 0.5,
                         }}
                       />
-                    ) : (
-                      <Box
-                        sx={{
-                          width: 44,
-                          height: 44,
-                          bgcolor: "#e2e8f0",
-                          borderRadius: 1,
-                        }}
-                      />
-                    )}
+                    ) : null}
+                    <Box
+                      sx={{
+                        width: 44,
+                        height: 44,
+                        bgcolor: "#e2e8f0",
+                        borderRadius: 1,
+                        display: s.image || s.icon ? "none" : "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <MiscellaneousServicesIcon sx={{ color: "#94a3b8", fontSize: 22 }} />
+                    </Box>
                   </TableCell>
 
                   <TableCell>
