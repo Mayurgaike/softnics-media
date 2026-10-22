@@ -22,6 +22,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const ContactSection = () => {
+  const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -199,10 +200,16 @@ const ContactSection = () => {
               />
 
              
-              <ReCAPTCHA
-                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                onChange={handleCaptcha}
-              />
+              {recaptchaSiteKey ? (
+                <ReCAPTCHA
+                  sitekey={recaptchaSiteKey}
+                  onChange={handleCaptcha}
+                />
+              ) : (
+                <Typography variant="body2" color="text.secondary">
+                  Contact form verification is not configured.
+                </Typography>
+              )}
 
               
               <Stack
@@ -214,6 +221,7 @@ const ContactSection = () => {
                   type="submit"
                   variant="contained"
                   fullWidth
+                  disabled={!recaptchaSiteKey}
                   sx={{
                     borderRadius: 3,
                     px: 4,

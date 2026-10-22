@@ -28,6 +28,47 @@ module.exports = (sequelize, DataTypes) => {
       closing: {
         type: DataTypes.TEXT,
       },
+      content: {
+        type: DataTypes.TEXT("long"),
+      },
+      image: {
+        type: DataTypes.STRING,
+      },
+      status: {
+        type: DataTypes.ENUM("draft", "published"),
+        allowNull: false,
+        defaultValue: "draft",
+      },
+      metaTitle: {
+        type: DataTypes.STRING,
+      },
+      metaDescription: {
+        type: DataTypes.TEXT,
+      },
+      metaKeywords: {
+        type: DataTypes.TEXT,
+      },
+      ogTitle: {
+        type: DataTypes.STRING,
+      },
+      ogDescription: {
+        type: DataTypes.TEXT,
+      },
+      twitterTitle: {
+        type: DataTypes.STRING,
+      },
+      twitterDescription: {
+        type: DataTypes.TEXT,
+      },
+      schemaCode: {
+        type: DataTypes.TEXT("long"),
+      },
+      canonicalUrl: {
+        type: DataTypes.STRING,
+      },
+      customHeaderCode: {
+        type: DataTypes.TEXT("long"),
+      },
     },
     {
       paranoid: true,

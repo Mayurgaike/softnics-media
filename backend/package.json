@@ -4,7 +4,11 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "node app.js"
+        "start": "node app.js",
+        "migrate": "node src/migrations/runMigrations.js up",
+        "migrate:rollback": "node src/migrations/runMigrations.js down",
+        "test": "node src/tests/cms_e2e_test.js && node src/tests/upload_test.js",
+        "test:cms": "node src/tests/cms_e2e_test.js"
     },
     "keywords": [],
     "author": "",
@@ -19,6 +23,7 @@
         "jsonwebtoken": "^9.0.3",
         "multer": "^2.0.2",
         "mysql2": "^3.16.0",
+        "sanitize-html": "^2.18.1",
         "sequelize": "^6.37.7"
     }
 }

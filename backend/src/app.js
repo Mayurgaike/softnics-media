@@ -8,6 +8,8 @@ const clientRoutes = require("./routes/client.routes");
 const blogRoutes = require("./routes/blog.routes");
 const teamRoutes = require("./routes/team.routes");
 const authRoutes = require("./routes/auth.routes");
+const adminServiceRoutes = require("./routes/adminService.routes");
+const adminBlogRoutes = require("./routes/adminBlog.routes");
 const path = require("path");
 
 const app = express();
@@ -33,6 +35,8 @@ app.use("/api/blogs", blogRoutes);
 app.use("/api/clients", clientRoutes);
 app.use("/api/team", teamRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/admin/services", adminServiceRoutes);
+app.use("/api/admin/blogs", adminBlogRoutes);
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 app.get("/", (req, res) => {
@@ -40,6 +44,10 @@ app.get("/", (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;

@@ -2,14 +2,13 @@ import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import ServiceForm from "./ServiceForm";
 
 const ServiceDialog = ({ open, onClose, service, onSaved }) => {
-    console.log("ServiceDialog render", { service });
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
-      <DialogTitle>
-        {service ? "Edit Service" : "Add Service"}
+    <Dialog open={open} onClose={onClose} maxWidth="lg" fullWidth scroll="paper">
+      <DialogTitle sx={{ fontWeight: 800, borderBottom: "1px solid #e2e8f0" }}>
+        {service ? `Edit Service: ${service.title || ""}` : "Create New Service"}
       </DialogTitle>
 
-      <DialogContent>
+      <DialogContent sx={{ py: 3 }}>
         <ServiceForm
           service={service}
           onClose={onClose}

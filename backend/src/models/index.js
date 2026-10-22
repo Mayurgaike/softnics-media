@@ -54,7 +54,7 @@ db.ClientLink.belongsTo(db.Client, {
 
 db.Blog.hasMany(db.BlogBlock, {
   foreignKey: "blogId",
-  as: "content",
+  as: "contentBlocks",
   onDelete: "CASCADE",
 });
 

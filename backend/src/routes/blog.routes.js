@@ -1,12 +1,27 @@
 const router = require("express").Router();
-const c = require("../controllers/blog.controller");
-const { uploadBlogImage } = require("../config/upload");
+const controller = require("../controllers/blog.controller");
+const { uploadBlogImage, validateUploadedFile } = require("../config/upload");
 const auth = require("../middleware/auth.middleware");
 
-router.get("/", c.getAll);
-router.get("/:slug", c.getOne);
-router.post("/", auth, uploadBlogImage.single("image"), c.create);
-router.delete("/:id", auth, c.remove);
-router.put("/:id", auth, uploadBlogImage.single("image"), c.update);
+// Public endpoints
+router.get("/", controller.getAll);
+router.get("/:slug", controller.getOne);
+
+// Legacy admin endpoints (backward compatibility)
+router.post(
+  "/",
+  auth,
+  uploadBlogImage.single("image"),
+  validateUploadedFile,
+  controller.create
+);
+router.put(
+  "/:id",
+  auth,
+  uploadBlogImage.single("image"),
+  validateUploadedFile,
+  controller.update
+);
+router.delete("/:id", auth, controller.remove);
 
 module.exports = router;
