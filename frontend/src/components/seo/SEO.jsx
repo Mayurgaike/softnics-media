@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 
 const SEO = ({
@@ -19,34 +19,68 @@ const SEO = ({
   customHeaderCode,
   noIndex = false,
 }) => {
-  // Normalize schema JSON
-  const schemaString = useMemo(() => {
+  // Normalize schema JSON-LD
+  const cleanSchema = useMemo(() => {
     if (!schemaCode) return null;
     if (typeof schemaCode === "object") {
       try {
-        return JSON.stringify(schemaCode);
+        return JSON.stringify(schemaCode, null, 2);
       } catch (e) {
         return null;
       }
     }
-    const trimmed = schemaCode.trim();
-    if (trimmed.startsWith("<script") && trimmed.endsWith("</script>")) {
-      return trimmed.replace(/<script[^>]*>/, "").replace(/<\/script>/, "");
-    }
-    try {
-      JSON.parse(trimmed); // Validate it's valid JSON
-      return trimmed;
-    } catch (e) {
-      return null;
-    }
+    let str = schemaCode.trim();
+    // Strip opening <script...> and closing </script> if the user pasted wrapped script tags
+    str = str.replace(/^<script[^>]*>/i, "").replace(/<\/script>$/i, "").trim();
+    return str || null;
   }, [schemaCode]);
 
-  // Safely parse allowed meta and link tags from customHeaderCode
-  const customTags = useMemo(() => {
+  // Direct DOM injection of Custom Header Code so any custom tags (meta, script, link, etc.)
+  // appear immediately in <head> for DevTools Inspect
+  useEffect(() => {
+    if (!customHeaderCode || typeof customHeaderCode !== "string") return;
+
+    const trimmed = customHeaderCode.trim();
+    if (!trimmed) return;
+
+    const container = document.createElement("div");
+    container.innerHTML = trimmed;
+
+    const insertedElements = [];
+    while (container.firstChild) {
+      const child = container.firstChild;
+      if (child.nodeType === Node.ELEMENT_NODE) {
+        if (child.tagName === "SCRIPT") {
+          // Re-create script element so the browser registers/executes it properly
+          const s = document.createElement("script");
+          Array.from(child.attributes).forEach((attr) => {
+            s.setAttribute(attr.name, attr.value);
+          });
+          s.text = child.text || child.innerHTML;
+          document.head.appendChild(s);
+          insertedElements.push(s);
+        } else {
+          document.head.appendChild(child);
+          insertedElements.push(child);
+        }
+      }
+      container.removeChild(child);
+    }
+
+    return () => {
+      insertedElements.forEach((el) => {
+        if (el.parentNode) {
+          el.parentNode.removeChild(el);
+        }
+      });
+    };
+  }, [customHeaderCode]);
+
+  // Parse custom <meta> and <link> tags for Helmet
+  const customHelmetTags = useMemo(() => {
     if (!customHeaderCode || typeof customHeaderCode !== "string") return [];
 
     const tags = [];
-    // Match <meta ... /> and <link ... />
     const metaRegex = /<meta\s+([^>]+)>/gi;
     const linkRegex = /<link\s+([^>]+)>/gi;
 
@@ -59,8 +93,8 @@ const SEO = ({
       while ((attrMatch = attrRegex.exec(attrString)) !== null) {
         attrs[attrMatch[1].toLowerCase()] = attrMatch[2];
       }
-      if (attrs.name || attrs.property || attrs["http-equiv"]) {
-        tags.push({ type: "meta", props: attrs, key: `custom-meta-${tags.length}` });
+      if (attrs.name || attrs.property || attrs["http-equiv"] || attrs.charset) {
+        tags.push({ type: "meta", props: attrs, key: `helmet-meta-${tags.length}` });
       }
     }
 
@@ -73,7 +107,7 @@ const SEO = ({
         attrs[attrMatch[1].toLowerCase()] = attrMatch[2];
       }
       if (attrs.rel && attrs.href) {
-        tags.push({ type: "link", props: attrs, key: `custom-link-${tags.length}` });
+        tags.push({ type: "link", props: attrs, key: `helmet-link-${tags.length}` });
       }
     }
 
@@ -96,7 +130,7 @@ const SEO = ({
       {canonical && <link rel="canonical" href={canonical} />}
       {noIndex && <meta name="robots" content="noindex, nofollow" />}
 
-      {/* 2. Open Graph (Facebook, LinkedIn, Slack) */}
+      {/* 2. Open Graph (Facebook, LinkedIn, WhatsApp, Slack) */}
       {effectiveOgTitle && <meta property="og:title" content={effectiveOgTitle} />}
       {effectiveOgDesc && <meta property="og:description" content={effectiveOgDesc} />}
       {ogType && <meta property="og:type" content={ogType} />}
@@ -110,14 +144,15 @@ const SEO = ({
       {effectiveTwitterImage && <meta name="twitter:image" content={effectiveTwitterImage} />}
 
       {/* 4. Structured Data (JSON-LD Schema) */}
-      {schemaString && (
-        <script type="application/ld+json">
-          {schemaString}
-        </script>
+      {cleanSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: cleanSchema }}
+        />
       )}
 
-      {/* 5. Safe Custom Head Elements (<meta>, <link>) */}
-      {customTags.map((tag) => {
+      {/* 5. Custom Meta & Link Tags */}
+      {customHelmetTags.map((tag) => {
         if (tag.type === "meta") {
           return <meta key={tag.key} {...tag.props} />;
         }

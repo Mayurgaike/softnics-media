@@ -127,6 +127,18 @@ const theme = createTheme({
   },
 
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          '& .tox-tinymce-aux': {
+            zIndex: '1400 !important',
+          },
+          '& .tox.tox-silver-sink.tox-tinymce-aux': {
+            zIndex: '1400 !important',
+          },
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {

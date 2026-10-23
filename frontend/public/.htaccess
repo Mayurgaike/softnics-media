@@ -1,0 +1,21 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Serve existing files and directories directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Route HTML navigation to index.php (for SEO tags in View Source & Crawlers)
+  <IfModule mod_php.c>
+    RewriteRule ^ index.php [L]
+  </IfModule>
+  <IfModule !mod_php.c>
+    # If running with PHP-FPM / FastCGI (standard on Hostinger)
+    RewriteCond %{DOCUMENT_ROOT}/index.php -f
+    RewriteRule ^ index.php [L]
+    # Fallback to index.html
+    RewriteRule ^ index.html [L]
+  </IfModule>
+</IfModule>

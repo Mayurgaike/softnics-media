@@ -24,7 +24,15 @@ const BlogDialog = ({ open, onClose, blog, onSaved }) => {
   }, [blog]);
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="lg" fullWidth scroll="paper">
+    <Dialog
+      open={open}
+      onClose={onClose}
+      maxWidth="lg"
+      fullWidth
+      scroll="paper"
+      disableEnforceFocus
+      disableAutoFocus
+    >
       <DialogTitle sx={{ fontWeight: 800, borderBottom: "1px solid #e2e8f0" }}>
         {blog ? `Edit Blog: ${blog.title || ""}` : "Create New Blog"}
       </DialogTitle>

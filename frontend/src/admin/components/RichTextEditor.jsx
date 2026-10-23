@@ -85,6 +85,12 @@ const RichTextEditor = ({
             promotion: false,
             image_advtab: true,
             link_default_target: "_blank",
+            default_link_target: "_blank",
+            link_assume_external_targets: true,
+            target_list: [
+              { title: "New window", value: "_blank" },
+              { title: "Same window", value: "" },
+            ],
             relative_urls: false,
             remove_script_host: false,
             convert_urls: true,
