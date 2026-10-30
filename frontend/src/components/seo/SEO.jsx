@@ -47,25 +47,21 @@ const SEO = ({
     container.innerHTML = trimmed;
 
     const insertedElements = [];
-    while (container.firstChild) {
-      const child = container.firstChild;
-      if (child.nodeType === Node.ELEMENT_NODE) {
-        if (child.tagName === "SCRIPT") {
-          // Re-create script element so the browser registers/executes it properly
-          const s = document.createElement("script");
-          Array.from(child.attributes).forEach((attr) => {
-            s.setAttribute(attr.name, attr.value);
-          });
-          s.text = child.text || child.innerHTML;
-          document.head.appendChild(s);
-          insertedElements.push(s);
-        } else {
-          document.head.appendChild(child);
-          insertedElements.push(child);
-        }
+    Array.from(container.children).forEach((child) => {
+      if (child.tagName === "SCRIPT") {
+        // Re-create script element so the browser registers/executes it properly
+        const s = document.createElement("script");
+        Array.from(child.attributes).forEach((attr) => {
+          s.setAttribute(attr.name, attr.value);
+        });
+        s.text = child.text || child.innerHTML;
+        document.head.appendChild(s);
+        insertedElements.push(s);
+      } else {
+        document.head.appendChild(child);
+        insertedElements.push(child);
       }
-      container.removeChild(child);
-    }
+    });
 
     return () => {
       insertedElements.forEach((el) => {
@@ -74,44 +70,6 @@ const SEO = ({
         }
       });
     };
-  }, [customHeaderCode]);
-
-  // Parse custom <meta> and <link> tags for Helmet
-  const customHelmetTags = useMemo(() => {
-    if (!customHeaderCode || typeof customHeaderCode !== "string") return [];
-
-    const tags = [];
-    const metaRegex = /<meta\s+([^>]+)>/gi;
-    const linkRegex = /<link\s+([^>]+)>/gi;
-
-    let match;
-    while ((match = metaRegex.exec(customHeaderCode)) !== null) {
-      const attrString = match[1];
-      const attrs = {};
-      const attrRegex = /([a-zA-Z0-9_-]+)=["']([^"']*)["']/g;
-      let attrMatch;
-      while ((attrMatch = attrRegex.exec(attrString)) !== null) {
-        attrs[attrMatch[1].toLowerCase()] = attrMatch[2];
-      }
-      if (attrs.name || attrs.property || attrs["http-equiv"] || attrs.charset) {
-        tags.push({ type: "meta", props: attrs, key: `helmet-meta-${tags.length}` });
-      }
-    }
-
-    while ((match = linkRegex.exec(customHeaderCode)) !== null) {
-      const attrString = match[1];
-      const attrs = {};
-      const attrRegex = /([a-zA-Z0-9_-]+)=["']([^"']*)["']/g;
-      let attrMatch;
-      while ((attrMatch = attrRegex.exec(attrString)) !== null) {
-        attrs[attrMatch[1].toLowerCase()] = attrMatch[2];
-      }
-      if (attrs.rel && attrs.href) {
-        tags.push({ type: "link", props: attrs, key: `helmet-link-${tags.length}` });
-      }
-    }
-
-    return tags;
   }, [customHeaderCode]);
 
   const effectiveOgTitle = ogTitle || title;
@@ -150,17 +108,6 @@ const SEO = ({
           dangerouslySetInnerHTML={{ __html: cleanSchema }}
         />
       )}
-
-      {/* 5. Custom Meta & Link Tags */}
-      {customHelmetTags.map((tag) => {
-        if (tag.type === "meta") {
-          return <meta key={tag.key} {...tag.props} />;
-        }
-        if (tag.type === "link") {
-          return <link key={tag.key} {...tag.props} />;
-        }
-        return null;
-      })}
     </Helmet>
   );
 };
