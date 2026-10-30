@@ -139,3 +139,4 @@ if (stripos($html, '<title>') !== false) {
 
 header('Content-Type: text/html; charset=UTF-8');
 echo $html;
+
